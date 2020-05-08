@@ -1,0 +1,9 @@
+{% extends "layout/default.html" %}
+
+{% block title %}{{ page.title}} | {{ config.site.title }}{% endblock %}
+
+{% block body %}
+
+    {{ page.body|raw}}
+
+{% endblock %}

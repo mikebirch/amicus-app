@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <meta name="description" content="<title>{% block meta_description %}{% endblock %}</title>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="/css/paulus.css">
+    
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+    <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+    <header>
+        <div>
+            {% if here != '/' %}
+                <a href="/">
+            {% endif %}
+            <img alt="Logo" src="https://via.placeholder.com/200x70?text=Logo" height="70">
+            {% if here != '/' %}
+                </a>
+            {% endif %}
+        </div>
+        <nav>
+            <ul class="main-menu">
+                {% include "Element/main_menu.html" %}
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        {% block body %}
+        {% endblock %}
+        {% block aside %}
+        {% endblock %}
+    </main>
+    <footer>
+        <hr>
+        {{ site.title}} copyright  {{ now | date('Y') }}
+    </footer>
+    {% if config.google_analytics and config.environment == 'prod' %}
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <script>
+        window.ga = function () {
+            ga.q.push(arguments)
+        };
+        ga.q = [];
+        ga.l = +new Date;
+        ga('create', 'UA-XXXXX-Y', 'auto');
+        ga('set', 'transport', 'beacon');
+        ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
+    {% endif %}
+</body>
+
+</html>

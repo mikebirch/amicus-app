@@ -1,0 +1,37 @@
+{% extends "layout/default.html" %}
+
+{% block title %}Blog | {{ config.site.title }}{% endblock %}
+
+{% block body %}
+
+{% for post in blog_posts %}
+<article{% if blog_post.sticky %} class="sticky"{% endif %} itemscope="" itemtype="http://schema.org/BlogPosting" role="article">
+
+    <header class="clearfix">
+      <h2><a re="bookmark" href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
+      {% if config.blog.show_date_on_index %}
+      <time pubdate datetime="{{ post.created|date('c') }}">
+          {{ post.created|date(config.blog.date_format_on_index) }}
+      </time>
+      {% endif %}
+    </header>
+    {% if config.blog.show_summary_on_index %}
+    <p class="post-summary">{{ post.summary }}</p>
+    {% endif %}
+  </article>
+{% endfor %}
+
+
+{% include "Element/pager.html" %}
+
+{% endblock %}
+
+{% block aside %}
+
+<aside role="complementary" class="sidebar">
+
+  {% include "Element/rss.html" %}
+
+</aside>
+  
+{% endblock %}

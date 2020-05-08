@@ -1,0 +1,28 @@
+cache
+vendor
+composer.lock
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Tool specific files #
+#######################
+# Visual Studio Code
+.vscode
+# Sass preprocessor
+.sass-cache/
+# Docker
+docker-compose.yml
+phpdocker/*
+mysql
+
+# config
+config/config.php

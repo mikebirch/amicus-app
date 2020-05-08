@@ -1,0 +1,30 @@
+{% extends "layout/default.html" %}
+
+{% block title %}{{ config.site.title }}{% endblock %}
+
+{% block body %}
+
+    {{ page.body|raw}}
+    <div class="latest-posts">
+      {% for blog_post in blog_posts %}
+
+      <article{% if blog_post.sticky %} class="sticky"{% endif %} itemscope="" itemtype="http://schema.org/BlogPosting" role="article">
+
+        <header class="clearfix">
+          <h2><a re="bookmark" href="/blog/{{ blog_post.slug }}">{{ blog_post.title }}</a></h2>
+          {% if config.blog.show_date_on_index %}
+          <time pubdate datetime="{{ blogPost.created|date('c') }}">
+              {{ blogPost.created|date('j F Y') }}
+          </time>
+          {% endif %}
+        </header>
+        {% if config.blog.show_summary_on_index %}
+        <p class="summary">{{ blogPost.summary }}</p>
+        {% endif %}
+      </article>
+
+      {% endfor %}
+      <p><a class="button" href="/blog">All posts »</a></p>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "layout/default.html" %}
+
+{% block title %}{{ blog_post.title }}{% endblock %}
+
+{% block body %}
+
+<article class="post">
+
+    <header class="clearfix">
+        <h1>{{ blog_post.title }}</h1>
+        <div class="post-meta">
+            <time pubdate datetime="{{ blog_post.created|date('c') }}">
+                {{ blog_post.created|date(config.blog.date_format_on_view) }}
+            </time>
+            <p class="author">by {{ blog_post.author }}</p>
+        </div>
+    </header>
+    <section class="post-content">
+        {{ blog_post.body|raw }}
+    </section>
+    {% if config.blog.use_discus %}
+    <footer class="comments">
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'mikebirch';
+
+            var disqus_identifier = 'blog-post-{{ blog_post.id }}';
+            var disqus_url = 'https://www.regbirch.com/blog/{{ blog_post.slug }}';
+
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(
+                    dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+        <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span
+                class="logo-disqus">Disqus</span></a>
+
+    </footer>
+    {% endif %}
+</article>
+
+{% endblock %}

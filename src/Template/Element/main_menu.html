@@ -1,0 +1,9 @@
+{% for item in main_menu_items %}
+<li{{ here == item.url ? ' class="active"' : '' }}>
+    {% if here == item.url %}
+    {{ item.title }}
+    {% else %}
+    <a href="{{ item.url }}">{{ item.title }}</a>
+    {% endif %}
+</li>
+{% endfor %}
