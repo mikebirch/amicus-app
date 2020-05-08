@@ -36,7 +36,7 @@ return [
         'disqus_developer_mode' => false
     ],
     'site' => [
-        'title' => 'Michael Birch'
+        'title' => 'Site title'
     ],
     'google_analytics' => true
 ];
