@@ -5,8 +5,11 @@
 {% block body %}
 
 {% for post in blog_posts %}
-<article{% if blog_post.sticky %} class="sticky"{% endif %} itemscope="" itemtype="http://schema.org/BlogPosting" role="article">
 
+  <article class="{{ html_classes({
+    'sticky': blog_post.sticky,
+    'has-summary': config.blog.show_summary_on_index
+}) }}" itemscope="" itemtype="http://schema.org/BlogPosting" role="article">
     <header class="clearfix">
       <h2><a re="bookmark" href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
       {% if config.blog.show_date_on_index %}

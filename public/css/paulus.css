@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 2rem auto;
-    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font: 18px/1.5 Georgia, serif;
     color: #444
 }
 
@@ -14,6 +14,7 @@ main {
 body > header {
     border-bottom: 1px solid #ccc;
     padding: 2rem 0.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body > footer {
@@ -36,6 +37,8 @@ h2,
 h3 {
     line-height: 1.2;
     font-weight: 400;
+    color: #222;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 a:link,
@@ -71,6 +74,10 @@ article.has-summary {
     padding-bottom: 2rem;
 }
 
+article.post > header {
+    margin-bottom: 4rem;;
+}
+
 .latest-posts {
     padding: 4rem 0;
 }
@@ -100,7 +107,7 @@ pre {
 
 @media (min-width: 80em) {
     body {
-        font-size: 18px;
+        font-size: 20px;
     }
 }
 
