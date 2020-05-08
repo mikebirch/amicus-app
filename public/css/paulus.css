@@ -1,14 +1,35 @@
 body {
+    margin: 0;
     padding: 2rem auto;
-    font: 18px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     color: #444
 }
 
 main {
-    max-width: 650px;
+    max-width: 50em;
     margin: 0 auto;
-    padding-bottom: 4rem;
+    padding: 4rem 0.5rem;
 }
+
+body > header {
+    border-bottom: 1px solid #ccc;
+    padding: 2rem 0.5rem;
+}
+
+body > footer {
+    border-top: 1px solid #ccc;
+    padding: 4rem 0.5rem;
+}
+
+body > header,
+body > footer {
+    text-align: center;
+}
+
+small {
+    font-size: 80%;
+}
+
 
 h1,
 h2,
@@ -29,25 +50,6 @@ a:visited {
 
 a {
     text-decoration: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
- hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-body > header,
-body > footer {
-    padding: 0 0 4rem;
-    text-align: center;
 }
 
 /* nav */
@@ -81,6 +83,25 @@ article.has-summary {
 .post-meta time,
 .post-meta p {
     display: inline;
+}
+
+pre {
+    white-space: pre-wrap !important;
+}
+
+pre {
+    padding: 1rem;
+    background-color: #555;
+    color: #eee;
+    page-break-inside: avoid;
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+}
+
+@media (min-width: 80em) {
+    body {
+        font-size: 18px;
+    }
 }
 
 @media (prefers-color-scheme: dark) {

@@ -36,7 +36,6 @@
                 {% include "Element/main_menu.html" %}
             </ul>
         </nav>
-        <hr>
     </header>
     <main>
         {% block body %}
@@ -45,8 +44,8 @@
         {% endblock %}
     </main>
     <footer>
-        <hr>
-        {{ site.title}} copyright  {{ now | date('Y') }}
+        <p><small>{{ site.title}} copyright © {{ now | date('Y') }}</small></p>
+        <p><small>Built with Paulus</small></p>
     </footer>
     {% if config.google_analytics and config.environment == 'prod' %}
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
