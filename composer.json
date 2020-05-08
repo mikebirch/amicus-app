@@ -13,6 +13,6 @@
         ]
     },
     "require-dev": {
-        "mikebirch/paulus-php": "dev-master"
+        "mikebirch/amicus": "dev-master"
     }
 }
