@@ -1,4 +1,8 @@
 {
+    "name": "mikebirch/amicus-app",
+    "description": "Amicus app",
+    "type": "project",
+    "license": "MIT",
     "require": {
         "jasongrimes/paginator": "~1.0",
         "wruczek/php-file-cache": "^0.0.5",
@@ -13,6 +17,6 @@
         ]
     },
     "require-dev": {
-        "mikebirch/amicus": "dev-master"
+        "mikebirch/amicus": "^0.1.0"
     }
 }
