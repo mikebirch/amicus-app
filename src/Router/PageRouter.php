@@ -4,7 +4,7 @@ namespace App\Router;
 
 use App\Model\Pages;
 use Amicus\Router\Router;
-use Amicus\Cache\Cache;
+use App\Cache\Cache;
 
 /**
  * PageRouter class

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Amicus\Cache\Cache;
+use App\Cache\Cache;
 use App\Model\BlogPosts;
 use Amicus\View\View;
 

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Amicus\Cache\Cache;
+use App\Cache\Cache;
 
 /**
  * MainMenu controller
