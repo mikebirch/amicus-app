@@ -12,7 +12,7 @@ CREATE TABLE `blog_posts` (
   `author` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
