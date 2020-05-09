@@ -6,7 +6,8 @@
     "require": {
         "jasongrimes/paginator": "~1.0",
         "wruczek/php-file-cache": "^0.0.5",
-        "lib16/rss": "^1.0"
+        "lib16/rss": "^1.0",
+        "mikebirch/amicus": "^0.1.0"
     },
     "autoload": {
         "psr-4": {
@@ -17,6 +18,6 @@
         ]
     },
     "require-dev": {
-        "mikebirch/amicus": "^0.1.0"
+        "phpstan/phpstan": "^0.12.23"
     }
 }
