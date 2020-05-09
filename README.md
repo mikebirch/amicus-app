@@ -1,6 +1,6 @@
 # Amicus application skeleton
 
-A skeleton for building simple websites with the [Amicus PHP framwork](https://github.com/mikebirch/Amicus-php)
+A skeleton for building simple websites with the [Amicus PHP framwork](https://github.com/mikebirch/amicus)
 
 This skeleton includes a blog and pages for a simple website.
 
