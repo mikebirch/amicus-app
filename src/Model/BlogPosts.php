@@ -9,9 +9,24 @@ use JasonGrimes\Paginator;
  */
 class BlogPosts extends \Amicus\Model\Model
 {
+    /**
+     * instance of Medoo
+     *
+     * @var object
+     */
+    private $database;
+
+    /**
+     * application configuration
+     *
+     * @var array
+     */
+    private $config;
+    
     public function __construct()
     {
         $this->database = static::getDB();
+        $this->config = static::getConfig();
     }
     
     /**
@@ -52,7 +67,6 @@ class BlogPosts extends \Amicus\Model\Model
      */
     public function getLatest()
     {
-        $config = static::getConfig();
         $blog_posts = $this->database->select('blog_posts', [
             'title',
             'slug',
@@ -61,7 +75,7 @@ class BlogPosts extends \Amicus\Model\Model
             'created'
         ], [
             'published' => 1,
-            'LIMIT' => $config['blog']['number_latest_posts'],
+            'LIMIT' => $this->config['blog']['number_latest_posts'],
             'ORDER' => ['sticky' => 'DESC', 'created' => 'DESC']
         ]);
 

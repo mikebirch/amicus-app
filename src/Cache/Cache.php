@@ -10,6 +10,13 @@ use Amicus\Configure\Configure;
  */
 class Cache
 {
+    /**
+     * Config array from config/config.php
+     *
+     * @var array
+     */
+    public $config;
+    
     public function __construct()
     {
         $configure = new Configure();

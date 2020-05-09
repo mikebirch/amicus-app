@@ -14,6 +14,13 @@ use Amicus\View\View;
 class PagesController extends AppController
 {
     /**
+     * An instance of App\Cache\Cache
+     *
+     * @var object
+     */
+    private $cache;
+    
+    /**
      * Class constructor
      *
      * @param array $route_params  Parameters from the route

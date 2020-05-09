@@ -13,6 +13,20 @@ use Amicus\View\View;
 class BlogPostsController extends AppController
 {
     /**
+     * An instance of App\Cache\Cache
+     *
+     * @var object
+     */
+    private $cache;
+
+    /**
+     * An instance of App\Model\BlogPosts
+     *
+     * @var object
+     */
+    private $blogPosts;
+    
+    /**
      * Class constructor
      *
      * @param array $route_params  Parameters from the route

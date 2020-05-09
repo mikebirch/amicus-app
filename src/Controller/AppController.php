@@ -13,6 +13,13 @@ class AppController extends Controller
 {
 
     /**
+     * data to be passed to views
+     *
+     * @var array
+     */
+    public $data;
+    
+    /**
      * Class constructor
      *
      * @param array $route_params  Parameters from the route

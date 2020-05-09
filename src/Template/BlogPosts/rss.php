@@ -6,7 +6,7 @@ header('Content-Type: text/xml');
 
 $protocol = 'https://';
 
-if ($config['environment'] == 'dev') {
+if ( isset($config['environment']) && $config['environment'] == 'dev' ) {
     $protocol = 'http://'; 
 }
 
@@ -21,16 +21,19 @@ $replace = [
     'src="' . $protocol . $_SERVER['HTTP_HOST'] . '/' . 'img' . '/', 
     'href="' . $protocol . $_SERVER['HTTP_HOST'] . '/'
 ];
-foreach ($blog_posts as $post) {
-    $body = str_replace($search, $replace, $post['body']);
-    $channel
-        ->item(
-            $post['title'],
-            '<![CDATA[ ' . $body . ' ]]>',
-            $protocol . $_SERVER['HTTP_HOST'] . '/' . 'blog' . '/' . $post['slug']
-        )
-        ->guid('regbirch.com-post-' . $post['id'], false)
-        ->pubDate(new DateTime($post['created']));
+
+if ( isset($blog_posts) ) {
+    foreach ($blog_posts as $post) {
+        $body = str_replace($search, $replace, $post['body']);
+        $channel
+            ->item(
+                $post['title'],
+                '<![CDATA[ ' . $body . ' ]]>',
+                $protocol . $_SERVER['HTTP_HOST'] . '/' . 'blog' . '/' . $post['slug']
+            )
+            ->guid('regbirch.com-post-' . $post['id'], false)
+            ->pubDate(new DateTime($post['created']));
+    }
 }
 
 echo $channel;
