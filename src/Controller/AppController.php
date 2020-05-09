@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use Paulus\Controller\Controller;
+use Amicus\Controller\Controller;
 use App\Model\MainMenu;
-use Paulus\Configure\Configure;
+use Amicus\Configure\Configure;
 
 /**
  * Pages controller

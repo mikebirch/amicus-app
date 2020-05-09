@@ -3,8 +3,8 @@
 namespace App\Router;
 
 use App\Model\Pages;
-use Paulus\Router\Router;
-use Paulus\Cache\Cache;
+use Amicus\Router\Router;
+use Amicus\Cache\Cache;
 
 /**
  * PageRouter class

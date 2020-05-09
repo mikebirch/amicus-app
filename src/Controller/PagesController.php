@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Paulus\Cache\Cache;
+use Amicus\Cache\Cache;
 use App\Model\Pages;
 use App\Model\BlogPosts;
-use Paulus\View\View;
+use Amicus\View\View;
 
 /**
  * Pages controller

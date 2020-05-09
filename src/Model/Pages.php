@@ -7,7 +7,7 @@ use Wruczek\PhpFileCache\PhpFileCache;
 /**
  * Pages model
  */
-class Pages extends \Paulus\Model\Model
+class Pages extends \Amicus\Model\Model
 {   
     /**
      * Get all the published pages from the database

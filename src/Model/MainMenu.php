@@ -7,7 +7,7 @@ use Wruczek\PhpFileCache\PhpFileCache;
 /**
  * Main menu model
  */
-class MainMenu extends \Paulus\Model\Model
+class MainMenu extends \Amicus\Model\Model
 {
     /**
      * Get the main menu links from the database

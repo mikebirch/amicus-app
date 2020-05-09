@@ -7,7 +7,7 @@ use JasonGrimes\Paginator;
 /**
  * BlogPosts model
  */
-class BlogPosts extends \Paulus\Model\Model
+class BlogPosts extends \Amicus\Model\Model
 {
     public function __construct()
     {

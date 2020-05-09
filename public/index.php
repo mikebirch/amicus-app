@@ -10,8 +10,8 @@ define("APP", ROOT . DS . 'src');
 
 require ROOT. DS . 'vendor' . DS . 'autoload.php';
 
-set_error_handler('Paulus\Error\Error::errorHandler');
-set_exception_handler('Paulus\Error\Error::exceptionHandler');
+set_error_handler('Amicus\Error\Error::errorHandler');
+set_exception_handler('Amicus\Error\Error::exceptionHandler');
 
 $router = new App\Router\PageRouter();
 
