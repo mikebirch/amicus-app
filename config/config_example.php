@@ -27,6 +27,7 @@ return [
         'Template' => APP . DS . 'Template'
     ],    
     'blog' => [
+        'meta_description' => '',
         'number_latest_posts' => 3,
         'show_summary_on_index' => true,
         'show_date_on_index' => false,
@@ -36,7 +37,8 @@ return [
         'disqus_developer_mode' => false
     ],
     'site' => [
-        'title' => 'Site title'
+        'title' => 'Site title',
+        'meta_description' => ''
     ],
     'google_analytics' => true
 ];
