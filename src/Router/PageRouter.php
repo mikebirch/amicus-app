@@ -3,7 +3,7 @@
 namespace App\Router;
 
 use App\Model\Pages;
-use Amicus\Router\Router;
+use Showus\Router\Router;
 use App\Cache\Cache;
 
 /**

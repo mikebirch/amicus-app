@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use Amicus\Controller\Controller;
+use Showus\Controller\Controller;
 use App\Model\MainMenu;
-use Amicus\Configure\Configure;
+use Showus\Configure\Configure;
 
 /**
  * Pages controller

@@ -1,6 +1,6 @@
 {
-    "name": "mikebirch/amicus-app",
-    "description": "Amicus app",
+    "name": "mikebirch/showus-app",
+    "description": "Showus app",
     "type": "project",
     "license": "MIT",
     "require": {

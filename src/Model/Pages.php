@@ -8,7 +8,7 @@ use PDO;
 /**
  * Pages model
  */
-class Pages extends \Amicus\Model\Model
+class Pages extends \Showus\Model\Model
 {   
     /**
      * Get all the published pages from the database

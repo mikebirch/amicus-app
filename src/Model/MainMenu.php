@@ -8,7 +8,7 @@ use PDO;
 /**
  * Main menu model
  */
-class MainMenu extends \Amicus\Model\Model
+class MainMenu extends \Showus\Model\Model
 {
     /**
      * Get the main menu links from the database

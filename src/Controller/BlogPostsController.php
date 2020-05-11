@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Cache\Cache;
 use App\Model\BlogPosts;
-use Amicus\View\View;
+use Showus\View\View;
 
 /**
  * BlogPosts controller

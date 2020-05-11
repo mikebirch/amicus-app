@@ -8,7 +8,7 @@ use JasonGrimes\Paginator;
 /**
  * BlogPosts model
  */
-class BlogPosts extends \Amicus\Model\Model
+class BlogPosts extends \Showus\Model\Model
 {  
     /**
      * Get a page of published blog posts from the database

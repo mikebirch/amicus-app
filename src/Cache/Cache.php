@@ -3,7 +3,7 @@
 namespace App\Cache;
 
 use Wruczek\PhpFileCache\PhpFileCache;
-use Amicus\Configure\Configure;
+use Showus\Configure\Configure;
 
 /**
  * Cache using PhpFileCache

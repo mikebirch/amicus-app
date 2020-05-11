@@ -6,7 +6,7 @@ use App\Controller\AppController;
 use App\Cache\Cache;
 use App\Model\Pages;
 use App\Model\BlogPosts;
-use Amicus\View\View;
+use Showus\View\View;
 
 /**
  * Pages controller

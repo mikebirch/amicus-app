@@ -1,7 +1,7 @@
 <?php
 // remove these checks if your website meets the requirements
 if (version_compare(PHP_VERSION, '7.0') < 0) {
-    throw new \Exception('Your PHP version must be equal or higher than 7.0 to use Amicus.', 404);
+    throw new \Exception('Your PHP version must be equal or higher than 7.0 to use Showus.', 404);
 }
 
 if (!is_writable(CACHE)) {
