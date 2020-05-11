@@ -7,7 +7,7 @@
         "jasongrimes/paginator": "~1.0",
         "wruczek/php-file-cache": "^0.0.5",
         "lib16/rss": "^1.0",
-        "mikebirch/amicus": "^0.1.0"
+        "mikebirch/showus": "^0.1.2"
     },
     "autoload": {
         "psr-4": {
