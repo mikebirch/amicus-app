@@ -22,11 +22,11 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
     <header>
-        <div>
+        <div class="logo">
             {% if here != '/' %}
                 <a href="/">
             {% endif %}
-            <img alt="Logo" src="https://via.placeholder.com/200x70?text=Logo" height="70">
+            AMICUS
             {% if here != '/' %}
                 </a>
             {% endif %}
@@ -38,14 +38,16 @@
         </nav>
     </header>
     <main>
+        <div class="content">
         {% block body %}
         {% endblock %}
+        </div>
         {% block aside %}
         {% endblock %}
     </main>
     <footer>
         <p><small>{{ site.title}} copyright © {{ now | date('Y') }}</small></p>
-        <p><small>Built with Amicus</small></p>
+        <p><small>Powered by <a href="https://github.com/mikebirch/amicus-app">Amicus</a></small></p>
     </footer>
     {% if config.google_analytics and config.environment == 'prod' %}
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->

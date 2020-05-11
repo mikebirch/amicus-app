@@ -1,25 +1,51 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 body {
     margin: 0;
     padding: 2rem auto;
     font: 18px/1.5 Georgia, serif;
-    color: #444
+    color: #444;
+    background-color: #f1f1f1;
 }
 
 main {
-    max-width: 50em;
+    max-width: 56em;
     margin: 0 auto;
     padding: 4rem 0.5rem;
+    /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
+    -webkit-box-shadow:0 0.75rem 1.5rem rgba(0,0,0,0.05);
+    box-shadow:0 0.75rem 1.5rem rgba(0,0,0,0.05);
 }
 
 body > header {
-    border-bottom: 1px solid #ccc;
     padding: 2rem 0.5rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #3a7bd5; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #3a7bd5, #709FE0);
+    background: linear-gradient(to bottom, #3a7bd5, #709FE0);
+    color: #fff;
 }
 
 body > footer {
-    border-top: 1px solid #ccc;
-    padding: 4rem 0.5rem;
+    background: #3a7bd5; 
+    color: #fff;
+    background: -webkit-linear-gradient(to bottom, #3a7bd5, #2A599B);
+    background: linear-gradient(to bottom, #3a7bd5, #2A599B);
+    padding: 4rem 0.5rem 8rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body > header,
@@ -44,15 +70,22 @@ h3 {
 a:link,
     a:hover,
     a:active {
-    color:#2196F3;
+    color:#3a7bd5;
 }
 
 a:visited {
-    color: #1565C0;
+    color: #3a7bd5;
 }
 
 a {
     text-decoration: none;
+}
+
+body > header a:link,
+body > header a:visited,
+body > footer a:link,
+body > footer a:visited {
+    color: #fff;
 }
 
 /* nav */
@@ -66,7 +99,11 @@ a {
 }
 
 .main-menu li {
-    padding: 0 0.5rem;
+    margin: 0 0.5rem;
+}
+
+.main-menu li.active {
+    border-bottom: 2px solid;
 }
 /* Blog */
 
@@ -107,9 +144,47 @@ pre {
     font-size: 1em; /* 2 */
 }
 
+.debug-bar {
+  background-color: rgb(69, 168, 90);
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.debug-bar > div {
+  display: flex;
+  margin: 0 auto;
+  max-width: 50em;
+  justify-content: space-between;
+}
+
+.debug-bar a {
+  color: #444;
+  text-decoration: underline;
+}
+
+.debug-bar p {
+  margin: 0;
+}
+
 @media (min-width: 80em) {
     body {
         font-size: 20px;
+    }
+
+    body > header {
+        padding-bottom: 6rem;
+    }
+
+    main {
+        margin: -2rem auto 4rem;
+        padding: 4rem 6rem;
+        min-height: 600px;
+        display: flex;
+        background-color: #fff;
+    }
+
+    aside {
+        min-width: 20%;
     }
 }
 
@@ -131,11 +206,12 @@ pre {
 }
 
 
-/* Bootstrap v3.2.0 https://github.com/twbs/bootstrap/blob/c068162161154a4b85110ea1e7dd3d7897ce2b72/dist/css/bootstrap.css */
+/* Based on Bootstrap v3.2.0 https://github.com/twbs/bootstrap/blob/c068162161154a4b85110ea1e7dd3d7897ce2b72/dist/css/bootstrap.css */
 .pagination {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     display: inline-block;
     padding-left: 0;
-    margin: 20px 0;
+    margin: 2rem 0;
     border-radius: 4px;
   }
   .pagination > li {
@@ -150,19 +226,8 @@ pre {
     line-height: 1.42857143;
     text-decoration: none;
     background-color: #fff;
-    border: 1px solid #ddd;
   }
-  .pagination > li:first-child > a,
-  .pagination > li:first-child > span {
-    margin-left: 0;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-  .pagination > li:last-child > a,
-  .pagination > li:last-child > span {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
+
   .pagination > li > a:hover,
   .pagination > li > span:hover,
   .pagination > li > a:focus,
@@ -196,32 +261,11 @@ pre {
   .pagination-lg > li > a,
   .pagination-lg > li > span {
     padding: 10px 16px;
-    font-size: 18px;
-  }
-  .pagination-lg > li:first-child > a,
-  .pagination-lg > li:first-child > span {
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-  }
-  .pagination-lg > li:last-child > a,
-  .pagination-lg > li:last-child > span {
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
   }
   .pagination-sm > li > a,
   .pagination-sm > li > span {
     padding: 5px 10px;
     font-size: 12px;
-  }
-  .pagination-sm > li:first-child > a,
-  .pagination-sm > li:first-child > span {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-  }
-  .pagination-sm > li:last-child > a,
-  .pagination-sm > li:last-child > span {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
   }
   .pager {
     padding-left: 0;
