@@ -2,57 +2,43 @@
 
 namespace App\Model;
 
+use PDO;
 use JasonGrimes\Paginator;
 
 /**
  * BlogPosts model
  */
 class BlogPosts extends \Amicus\Model\Model
-{
-    /**
-     * instance of Medoo
-     *
-     * @var object
-     */
-    private $database;
-
-    /**
-     * application configuration
-     *
-     * @var array
-     */
-    private $config;
-    
-    public function __construct()
-    {
-        $this->database = static::getDB();
-        $this->config = static::getConfig();
-    }
-    
+{  
     /**
      * Get a page of published blog posts from the database
      *
      * @return array
      */
-    public function getPage($current_page)
+    public static function getPage($current_page)
     {
+        $pdo = static::getPDO();
+        
         $items_per_page = 10;
         $offset = ($current_page-1) * $items_per_page; 
-        $total_items = $this->database->count('blog_posts', ['published' => 1]);
+        $total_items = $pdo->query(
+            'SELECT count(*)
+            FROM blog_posts
+            WHERE published = 1'
+        )->fetchColumn();
+
         $totalPages = ceil($total_items / $items_per_page);
-            
-        $blog_posts = $this->database->select('blog_posts', [
-            'title',
-            'slug',
-            'summary',
-            'sticky',
-            'created'
-        ], [
-            'published' => 1,
-            'ORDER' => ['sticky' => 'DESC', 'created' => 'DESC'],
-            'LIMIT' => [$offset, $items_per_page]
-        ]);
         
+        $stmt = $pdo->prepare(
+            'SELECT title, slug, summary, sticky, created 
+            FROM blog_posts 
+            WHERE published = 1
+            ORDER BY sticky DESC, created DESC
+            LIMIT :offset, :items_per_page'
+        );
+        $stmt->execute(['offset' => $offset, 'items_per_page' => $items_per_page]);
+        $blog_posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
         //paginate        
         $url_pattern = '/blog?page=(:num)';
         $paginator = new Paginator($total_items, $items_per_page, $current_page, $url_pattern);
@@ -65,21 +51,19 @@ class BlogPosts extends \Amicus\Model\Model
      *
      * @return array
      */
-    public function getLatest()
+    public static function getLatest()
     {
-        $blog_posts = $this->database->select('blog_posts', [
-            'title',
-            'slug',
-            'summary',
-            'sticky',
-            'created'
-        ], [
-            'published' => 1,
-            'LIMIT' => $this->config['blog']['number_latest_posts'],
-            'ORDER' => ['sticky' => 'DESC', 'created' => 'DESC']
-        ]);
-
-        return ['blog_posts' => $blog_posts];
+        $pdo = static::getPDO();
+        $config = static::getConfig();
+        $stmt = $pdo->prepare(
+            'SELECT  title, slug, summary, sticky, created 
+            FROM blog_posts 
+            WHERE published = 1
+            ORDER by sticky DESC, created DESC
+            LIMIT :limit'
+        );
+        $stmt->execute(['limit' => $config['blog']['number_latest_posts']]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -87,24 +71,25 @@ class BlogPosts extends \Amicus\Model\Model
      *
      * @return array
      */
-    public function getBySlug($slug)
+    public static function getBySlug($slug)
     {
-        $blog_post = $this->database->get('blog_posts', [
-            'id',
-            'title',
-            'slug',
-            'body',
-            'sticky',
-            'meta_title',
-            'meta_description',
-            'author',
-            'created'
-        ], [
-            'slug' => $slug,
-            'published' => 1
-        ]);
-        
-        return ['blog_post' => $blog_post];
+        $pdo = static::getPDO();
+        $stmt = $pdo->prepare(
+            'SELECT 
+            id,
+            title,
+            slug,
+            body,
+            sticky,
+            meta_title,
+            meta_description,
+            author,
+            created 
+            FROM blog_posts 
+            WHERE published = 1 AND slug = ?'
+        );
+        $stmt->execute([$slug]); 
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -112,19 +97,15 @@ class BlogPosts extends \Amicus\Model\Model
      *
      * @return array
      */
-    public function getAll()
+    public static function getAll()
     {
-        $blog_posts = $this->database->select('blog_posts', [
-            'id',
-            'title',
-            'slug',
-            'body',
-            'created'
-        ], [
-            'published' => 1,
-            'ORDER' => ['created' => 'DESC']
-        ]);
-
-        return ['blog_posts' => $blog_posts];
+        $pdo = static::getPDO();
+        $stmt = $pdo->query(
+            'SELECT id, title, slug, body, created
+            FROM blog_posts 
+            WHERE published = 1
+            ORDER by created DESC'
+        );
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } 
 }

@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Wruczek\PhpFileCache\PhpFileCache;
+use PDO;
 
 /**
  * Pages model
@@ -16,14 +17,13 @@ class Pages extends \Amicus\Model\Model
      */
     public static function getAll()
     {    
-        $database = static::getDB();
-        $pages = $database->select('pages', [
-            'url'
-        ], [
-            'published' => 1,
-        ]);
-
-        return $pages;
+        $pdo = static::getPDO();
+        $stmt = $pdo->query(
+            'SELECT url 
+            FROM pages 
+            WHERE published = 1'
+        );
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -33,20 +33,20 @@ class Pages extends \Amicus\Model\Model
      */
     public static function getByUrl($url)
     { 
-        $database = static::getDB();
-        $page = $database->get('pages', [
-            'id',
-            'title',
-            'url',
-            'body',
-            'meta_title',
-            'meta_description',
-            'created'
-        ], [
-            'url' => $url,
-            'published' => 1
-        ]);
-
-        return ['page' => $page];
+        $pdo = static::getPDO();
+        $stmt = $pdo->prepare(
+            'SELECT 
+            id,
+            title,
+            url,
+            body,
+            meta_title,
+            meta_description,
+            created 
+            FROM pages 
+            WHERE published = 1 AND url = ?'
+        );
+        $stmt->execute([$url]); 
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

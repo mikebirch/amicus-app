@@ -78,7 +78,7 @@ class BlogPostsController extends AppController
             'getBySlug', 
             $this->route_params['slug']
         );
-        $this->data['blog_post'] = $blog_post['blog_post'];
+        $this->data['blog_post'] = $blog_post;
         if (!empty($this->data['blog_post'])) {
             View::renderTemplate('BlogPosts' . DS . 'view.html', $this->data);
         } else {
@@ -99,7 +99,7 @@ class BlogPostsController extends AppController
             $this->blogPosts, 
             'getAll'
         );
-        $this->data['blog_posts'] = $blog_posts['blog_posts'];
+        $this->data['blog_posts'] = $blog_posts;
         View::render('BlogPosts' . DS . 'rss.php', $this->data);
     }
 

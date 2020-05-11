@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Wruczek\PhpFileCache\PhpFileCache;
+use PDO;
 
 /**
  * Main menu model
@@ -19,13 +20,10 @@ class MainMenu extends \Amicus\Model\Model
         $cache = new PhpFileCache(static::getConfig()['paths']['Cache'] . DS . 'main-menu' . DS);
 
         if ($cache->isExpired("main_menu")) {
-            $database = static::getDB();
-            $main_menu = $database->select('main_menu', [
-                'title',
-                'url'
-            ], [
-                'published' => 1,
-            ]);
+            $pdo = static::getPDO();
+            $stmt = $pdo->query('SELECT title, url FROM main_menu WHERE published = 1');
+            $main_menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
             $expiration = 365*24*60*60;
             // permanent, this item will not be automatically cleared after expiring
             $cache->store("main_menu", $main_menu, $expiration, true); 

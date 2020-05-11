@@ -5,17 +5,17 @@ return [
     'Datasources' => [
         // indices match environment
         'dev' => [
-            'database_type' => 'mysql',
-            'database_name' => 'name',
-            'server' => 'localhost',
+            'type' => 'mysql',
+            'name' => 'name',
+            'host' => 'localhost',
             'username' => 'user',
             'password' => '123456',
             'charset' => 'utf8mb4'
         ],
         'prod' => [
-            'database_type' => 'mysql',
-            'database_name' => 'name',
-            'server' => 'localhost',
+            'type' => 'mysql',
+            'name' => 'name',
+            'host' => 'localhost',
             'username' => 'user',
             'password' => '123456',
             'charset' => 'utf8mb4'

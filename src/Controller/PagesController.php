@@ -50,15 +50,13 @@ class PagesController extends AppController
 
         $cache_path = 'page-view' . DS  .  'view' . $cache_name . DS;
         $Pages = new Pages;
-        $page = $cache->cacheData(
+        $this->data['page'] = $cache->cacheData(
             'page-view' . DS, 
             'view' . $cache_name,
             $Pages, 
             'getByUrl', 
             $this->data['here']
         );
-
-        $this->data['page'] = $page['page'];
 
         if ($this->data['here'] == '/') {
             $blogPosts = new BlogPosts;
@@ -67,7 +65,7 @@ class PagesController extends AppController
                 'latest',
                 $blogPosts, 
                 'getLatest');
-            $this->data['blog_posts'] = $blog_posts['blog_posts'];
+            $this->data['blog_posts'] = $blog_posts;
             $view = 'home.html';
         } else {
             $view = 'view.html';
