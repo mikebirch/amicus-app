@@ -95,4 +95,19 @@ class PagesController extends AppController
     {
         $this->cache->clearCache(['page-view' . DS]);
     }
+
+    /**
+     * Clear all blog caches.
+     *
+     * @return void
+     */
+    public function clearAllCacheAction()
+    {
+        $paths = [
+            'pages' . DS,
+            'page-view' . DS
+        ];
+        $this->cache->clearCache($paths);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 }

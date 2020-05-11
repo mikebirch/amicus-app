@@ -130,4 +130,21 @@ class BlogPostsController extends AppController
         ];
         $this->cache->clearCache($paths);
     }
+
+    /**
+     * Clear all blog caches
+     *
+     * @return void
+     */
+    public function clearAllCacheAction()
+    {
+        $paths = [
+            'blog-index' . DS,
+            'blog-latest' . DS,
+            'blog-feed' . DS,
+            'blog-view' . DS
+        ];
+        $this->cache->clearCache($paths);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 }

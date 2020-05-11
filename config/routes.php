@@ -12,6 +12,10 @@ $router->add('blog/clear-view-cache', [
     'controller' => 'BlogPostsController',
     'action' => 'clearViewCache'
 ]);
+$router->add('blog/clear-all-cache', [
+    'controller' => 'BlogPostsController',
+    'action' => 'clearAllCache'
+]);
 $router->add('blog/{slug}', [
     'controller' => 'BlogPostsController',
     'action' => 'view'
@@ -31,6 +35,10 @@ $router->add('pages/clear-index-cache', [
 $router->add('pages/clear-view-cache', [
     'controller' => 'PagesController',
     'action' => 'clearViewCache'
+]);
+$router->add('pages/clear-all-cache', [
+    'controller' => 'PagesController',
+    'action' => 'clearAllCache'
 ]);
 $router->add('main-menu/clear-cache', [
     'controller' => 'MainMenuController',
