@@ -38,6 +38,7 @@ class BlogPostsController extends AppController
         parent::__construct($route_params);
         $this->cache = new Cache();
         $this->blogPosts = new BlogPosts;
+        $this->cachePath = $this->data['config']['paths']['Cache'];
     }
 
     /**
@@ -54,7 +55,7 @@ class BlogPostsController extends AppController
         }
        
         $blog_posts = $this->cache->cacheData(
-            'blog-index' . DS, 
+            $this->cachePath . DS . 'blog-index' . DS, 
             'index-' . $current_page,
             $this->blogPosts, 
             'getPage', 
@@ -72,7 +73,7 @@ class BlogPostsController extends AppController
     public function viewAction()
     {
         $blog_post = $this->cache->cacheData(
-            'blog-view' . DS, 
+            $this->cachePath . DS . 'blog-view' . DS, 
             'view-' . $this->route_params['slug'],
             $this->blogPosts, 
             'getBySlug', 
@@ -94,7 +95,7 @@ class BlogPostsController extends AppController
     public function feedAction()
     {
         $blog_posts = $this->cache->cacheData(
-            'blog-feed' . DS, 
+            $this->cachePath . DS . 'blog-feed' . DS, 
             'feed',
             $this->blogPosts, 
             'getAll'
@@ -111,9 +112,9 @@ class BlogPostsController extends AppController
     public function clearIndexCacheAction()
     {
         $paths = [
-            'blog-index' . DS,
-            'blog-latest' . DS,
-            'blog-feed' . DS
+            $this->cachePath . DS . 'blog-index' . DS,
+            $this->cachePath . DS . 'blog-latest' . DS,
+            $this->cachePath . DS . 'blog-feed' . DS
         ];
         $this->cache->clearCache($paths);
     }
@@ -126,7 +127,7 @@ class BlogPostsController extends AppController
     public function clearViewCacheAction()
     {
         $paths = [
-            'blog-view' . DS,
+            $this->cachePath . DS . 'blog-view' . DS,
         ];
         $this->cache->clearCache($paths);
     }
@@ -139,10 +140,10 @@ class BlogPostsController extends AppController
     public function clearAllCacheAction()
     {
         $paths = [
-            'blog-index' . DS,
-            'blog-latest' . DS,
-            'blog-feed' . DS,
-            'blog-view' . DS
+            $this->cachePath . DS . 'blog-index' . DS,
+            $this->cachePath . DS . 'blog-latest' . DS,
+            $this->cachePath . DS . 'blog-feed' . DS,
+            $this->cachePath . DS . 'blog-view' . DS
         ];
         $this->cache->clearCache($paths);
         header('Location: ' . $_SERVER['HTTP_REFERER']);

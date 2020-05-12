@@ -18,6 +18,6 @@ class MainMenuController extends AppController
     public function clearCacheAction()
     {
         $cache = new Cache();
-        $cache->clearCache(['main-menu' . DS]);
+        $cache->clearCache([$this->data['config']['paths']['Cache'] . DS . 'main-menu' . DS]);
     }
 }

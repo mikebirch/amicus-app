@@ -3,26 +3,12 @@
 namespace App\Cache;
 
 use Wruczek\PhpFileCache\PhpFileCache;
-use Showus\Configure\Configure;
 
 /**
  * Cache using PhpFileCache
  */
 class Cache
-{
-    /**
-     * Config array from config/config.php
-     *
-     * @var array
-     */
-    public $config;
-    
-    public function __construct()
-    {
-        $configure = new Configure();
-        $this->config = $configure->read();
-    }
-    
+{   
     /**
      * Cache the data returned by a model’s method
      *
@@ -35,11 +21,10 @@ class Cache
      */
     public function cacheData($path, $file, $model, $action, $params = null)
     {
-        $cache = new PhpFileCache($this->config['paths']['Cache'] . DS . $path, $file );
+        $cache = new PhpFileCache($path, $file );
         if ($cache->isExpired("result")) {
             $result = $model->$action($params);
-            $expiration = $this->config['Cache']['expiration']['long'];
-            $cache->store("result", $result, $expiration, true); 
+            $cache->store("result", $result, null, true); 
         }
         return $cache->retrieve("result");
     }
@@ -55,8 +40,7 @@ class Cache
     public function clearCache($paths)
     {
         foreach ($paths as $path) {
-            $fullpath = $this->config['paths']['Cache'] . DS . $path;
-            foreach (new \DirectoryIterator($fullpath) as $fileInfo) {
+            foreach (new \DirectoryIterator($path) as $fileInfo) {
                 if(!$fileInfo->isDot()) {
                     unlink($fileInfo->getPathname());
                 }

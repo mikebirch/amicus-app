@@ -31,6 +31,7 @@ class PagesController extends AppController
     {
         parent::__construct($route_params);
         $this->cache = new Cache();
+        $this->cachePath = $this->data['config']['paths']['Cache'];
     }
     
     /**
@@ -51,7 +52,7 @@ class PagesController extends AppController
         $cache_path = 'page-view' . DS  .  'view' . $cache_name . DS;
         $Pages = new Pages;
         $this->data['page'] = $cache->cacheData(
-            'page-view' . DS, 
+            $this->cachePath . DS . 'page-view' . DS, 
             'view' . $cache_name,
             $Pages, 
             'getByUrl', 
@@ -61,7 +62,7 @@ class PagesController extends AppController
         if ($this->data['here'] == '/') {
             $blogPosts = new BlogPosts;
             $blog_posts = $cache->cacheData(
-                'blog-latest' . DS, 
+                $this->cachePath . DS . 'blog-latest' . DS, 
                 'latest',
                 $blogPosts, 
                 'getLatest');
@@ -81,7 +82,7 @@ class PagesController extends AppController
      */
     public function clearIndexCacheAction()
     {
-        $this->cache->clearCache(['pages' . DS]);
+        $this->cache->clearCache([$this->cachePath . DS . 'pages' . DS]);
     }
 
     /**
@@ -91,7 +92,7 @@ class PagesController extends AppController
      */
     public function clearViewCacheAction()
     {
-        $this->cache->clearCache(['page-view' . DS]);
+        $this->cache->clearCache([$this->cachePath . DS . 'page-view' . DS]);
     }
 
     /**
@@ -102,8 +103,8 @@ class PagesController extends AppController
     public function clearAllCacheAction()
     {
         $paths = [
-            'pages' . DS,
-            'page-view' . DS
+            $this->cachePath . DS . 'pages' . DS,
+            $this->cachePath . DS . 'page-view' . DS
         ];
         $this->cache->clearCache($paths);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
