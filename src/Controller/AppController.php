@@ -29,11 +29,9 @@ class AppController extends Controller
     public function __construct($route_params)
     {
         parent::__construct($route_params);
-
-        $configure = new Configure();
-        
-        $this->data['config'] = $configure->read();
-        // avoid this being displayed in a view by accident
+      
+        $this->data['config'] = Configure::read();
+        // to prevent sensitive data being displayed in a view
         unset($this->data['config']['Datasources']); 
 
         $this->data['main_menu_items'] = MainMenu::getAll();
