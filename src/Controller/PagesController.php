@@ -17,6 +17,13 @@ class PagesController extends AppController
      * @var object
      */
     private $cache;
+
+    /**
+     * Path to cache folder
+     *
+     * @var string
+     */
+    private $cachePath;
     
     /**
      * Class constructor
@@ -48,7 +55,6 @@ class PagesController extends AppController
         $cache_name = str_replace('/', '-', $cache_name);
 
         $cache_path = 'page-view' . DS  .  'view' . $cache_name . DS;
-        //$Pages = new Pages;
         $this->data['page'] = $cache->cacheData(
             $this->cachePath . DS . 'page-view' . DS, 
             'view' . $cache_name,

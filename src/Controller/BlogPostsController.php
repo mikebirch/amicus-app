@@ -19,11 +19,11 @@ class BlogPostsController extends AppController
     private $cache;
 
     /**
-     * An instance of App\Model\BlogPosts
+     * Path to cache folder
      *
-     * @var object
+     * @var string
      */
-    private $blogPosts;
+    private $cachePath;
     
     /**
      * Class constructor
