@@ -25,7 +25,7 @@ main {
     max-width: 56em;
     margin: 0 auto;
     padding: 4rem 0.5rem;
-    /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
+    background-color: #fff;
     -webkit-box-shadow:0 0.75rem 1.5rem rgba(0,0,0,0.05);
     box-shadow:0 0.75rem 1.5rem rgba(0,0,0,0.05);
 }
@@ -180,7 +180,6 @@ pre {
         padding: 4rem 6rem;
         min-height: 600px;
         display: flex;
-        background-color: #fff;
     }
 
     aside {
