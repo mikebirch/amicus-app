@@ -2,7 +2,6 @@
 
 namespace App\Router;
 
-use App\Model\Pages;
 use Showus\Router\Router;
 use Showus\Configure\Configure;
 use App\Cache\Cache;
@@ -24,12 +23,11 @@ class PageRouter extends Router
     public function addPages()
     {
         $cache = new Cache();
-        $Pages = new Pages;
         $config = Configure::read();
         $published_pages = $cache->cacheData(
             $config['paths']['Cache'] . DS . 'pages' . DS, 
             'all', 
-            $Pages, 
+            'App\Model\Pages', 
             'getAll'
         );
         foreach ($published_pages as $published_page) {

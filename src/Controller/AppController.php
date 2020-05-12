@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Showus\Controller\Controller;
-use App\Model\MainMenu;
 use Showus\Configure\Configure;
 use App\Cache\Cache;
 
@@ -36,11 +35,10 @@ class AppController extends Controller
         unset($this->data['config']['Datasources']); 
 
         $cache = new Cache();
-        $MainMenu = new MainMenu;
         $this->data['main_menu_items'] = $cache->cacheData(
             $this->data['config']['paths']['Cache'] . DS . 'pages' . DS, 
             'all', 
-            $MainMenu, 
+            'App\Model\MainMenu', 
             'getAll'
         );
 

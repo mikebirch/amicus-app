@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Cache\Cache;
-use App\Model\BlogPosts;
 use Showus\View\View;
 
 /**
@@ -37,7 +36,6 @@ class BlogPostsController extends AppController
     {
         parent::__construct($route_params);
         $this->cache = new Cache();
-        $this->blogPosts = new BlogPosts;
         $this->cachePath = $this->data['config']['paths']['Cache'];
     }
 
@@ -57,7 +55,7 @@ class BlogPostsController extends AppController
         $blog_posts = $this->cache->cacheData(
             $this->cachePath . DS . 'blog-index' . DS, 
             'index-' . $current_page,
-            $this->blogPosts, 
+            'App\Model\BlogPosts', 
             'getPage', 
             $current_page
         );
@@ -75,7 +73,7 @@ class BlogPostsController extends AppController
         $blog_post = $this->cache->cacheData(
             $this->cachePath . DS . 'blog-view' . DS, 
             'view-' . $this->route_params['slug'],
-            $this->blogPosts, 
+            'App\Model\BlogPosts', 
             'getBySlug', 
             $this->route_params['slug']
         );
@@ -97,7 +95,7 @@ class BlogPostsController extends AppController
         $blog_posts = $this->cache->cacheData(
             $this->cachePath . DS . 'blog-feed' . DS, 
             'feed',
-            $this->blogPosts, 
+            'App\Model\BlogPosts', 
             'getAll'
         );
         $this->data['blog_posts'] = $blog_posts;

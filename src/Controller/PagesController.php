@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Cache\Cache;
-use App\Model\Pages;
-use App\Model\BlogPosts;
 use Showus\View\View;
 
 /**
@@ -50,21 +48,20 @@ class PagesController extends AppController
         $cache_name = str_replace('/', '-', $cache_name);
 
         $cache_path = 'page-view' . DS  .  'view' . $cache_name . DS;
-        $Pages = new Pages;
+        //$Pages = new Pages;
         $this->data['page'] = $cache->cacheData(
             $this->cachePath . DS . 'page-view' . DS, 
             'view' . $cache_name,
-            $Pages, 
+            'App\Model\Pages', 
             'getByUrl', 
             $this->data['here']
         );
 
         if ($this->data['here'] == '/') {
-            $blogPosts = new BlogPosts;
             $blog_posts = $cache->cacheData(
                 $this->cachePath . DS . 'blog-latest' . DS, 
                 'latest',
-                $blogPosts, 
+                'App\Model\BlogPosts', 
                 'getLatest');
             $this->data['blog_posts'] = $blog_posts;
             $view = 'home.html';
