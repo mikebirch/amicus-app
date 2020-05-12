@@ -5,6 +5,7 @@ namespace App\Controller;
 use Showus\Controller\Controller;
 use App\Model\MainMenu;
 use Showus\Configure\Configure;
+use App\Cache\Cache;
 
 /**
  * Pages controller
@@ -34,7 +35,14 @@ class AppController extends Controller
         // to prevent sensitive data being displayed in a view
         unset($this->data['config']['Datasources']); 
 
-        $this->data['main_menu_items'] = MainMenu::getAll();
+        $cache = new Cache();
+        $MainMenu = new MainMenu;
+        $this->data['main_menu_items'] = $cache->cacheData(
+            $this->data['config']['paths']['Cache'] . DS . 'pages' . DS, 
+            'all', 
+            $MainMenu, 
+            'getAll'
+        );
 
         if ($_SERVER['REQUEST_URI'] != '/') {
             // remove trailing forward slash 
