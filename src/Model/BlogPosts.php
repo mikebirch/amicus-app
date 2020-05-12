@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use PDO;
+use Showus\Configure\Configure;
 use JasonGrimes\Paginator;
 
 /**
@@ -54,7 +55,7 @@ class BlogPosts extends \Showus\Model\Model
     public static function getLatest()
     {
         $pdo = static::getPDO();
-        $config = static::getConfig();
+        $config = Configure::read();
         $stmt = $pdo->prepare(
             'SELECT  title, slug, summary, sticky, created 
             FROM blog_posts 
