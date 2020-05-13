@@ -13,7 +13,7 @@ class Pages extends \Showus\Model\Model
     /**
      * Get all the published pages from the database
      *
-     * @return array
+     * @return array<mixed>
      */
     public static function getAll()
     {    
@@ -29,7 +29,8 @@ class Pages extends \Showus\Model\Model
     /**
      * Get a page from the database
      *
-     * @return array
+     * @param string $url the page’s url
+     * @return array<mixed>
      */
     public static function getByUrl($url)
     { 

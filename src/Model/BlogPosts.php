@@ -14,7 +14,8 @@ class BlogPosts extends \Showus\Model\Model
     /**
      * Get a page of published blog posts from the database
      *
-     * @return array
+     * @param int $current_page page number
+     * @return array<mixed>
      */
     public static function getPage($current_page)
     {
@@ -50,7 +51,7 @@ class BlogPosts extends \Showus\Model\Model
     /**
      * Get the latest blog posts from the database
      *
-     * @return array
+     * @return array<mixed>
      */
     public static function getLatest()
     {
@@ -70,7 +71,8 @@ class BlogPosts extends \Showus\Model\Model
     /**
      * Get a blog post from the database
      *
-     * @return array
+     * @param string $slug the blog post’s slug
+     * @return array<mixed>
      */
     public static function getBySlug($slug)
     {
@@ -100,7 +102,7 @@ class BlogPosts extends \Showus\Model\Model
     /**
      * Get all published blog posts from the database
      *
-     * @return array
+     * @return array<mixed>
      */
     public static function getAll()
     {

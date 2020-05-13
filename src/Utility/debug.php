@@ -1,5 +1,11 @@
 <?php
 if (!function_exists('debug')) {
+    /**
+     * debug variables
+     *
+     * @param mixed $var
+     * @return void
+     */
     function debug($var)
     {
         $bt = debug_backtrace();

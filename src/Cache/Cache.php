@@ -16,8 +16,8 @@ class Cache
      * @param string $file file name for cache
      * @param string $model namespace of the model class
      * @param string $action the method in the model
-     * @param string $params the parameters for the method 
-     * @return array
+     * @param int|string $params the parameters for the method 
+     * @return array<mixed> model data
      */
     public function cacheData($path, $file, $model, $action, $params = null)
     {
@@ -34,7 +34,7 @@ class Cache
      * Directus only has webhooks for create, update and delete which means that
      * you can’t target individual files via the clearCache() method in PhpFileCache
      *
-     * @param array $paths a list of directories
+     * @param array<int,string> $paths a list of directories
      * @return void
      */
     public function clearCache($paths)

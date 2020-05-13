@@ -13,7 +13,7 @@ class MainMenu extends \Showus\Model\Model
     /**
      * Get the main menu links from the database
      *
-     * @return array
+     * @return array<mixed>
      */
     public static function getAll()
     {

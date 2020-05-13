@@ -14,7 +14,7 @@ class BlogPostsController extends AppController
     /**
      * An instance of App\Cache\Cache
      *
-     * @var object
+     * @var Cache object
      */
     private $cache;
 
@@ -28,7 +28,7 @@ class BlogPostsController extends AppController
     /**
      * Class constructor
      *
-     * @param array $route_params  Parameters from the route
+     * @param array<string,string> $route_params  Parameters from the route
      *
      * @return void
      */
