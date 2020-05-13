@@ -3,7 +3,7 @@ use Showus\Configure\Configure;
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
-define("ROOT", dirname(__DIR__, 2));
+define("ROOT", dirname(__DIR__, 1));
 define("CONFIG", ROOT . DS . 'config');
 define("APP", ROOT . DS . 'src');
 

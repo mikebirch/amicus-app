@@ -16,7 +16,7 @@
     },
     "autoload-dev": {
         "files": [
-            "src/Utility/debug.php"
+            "src/debug.php"
         ]
     },
     "require-dev": {
