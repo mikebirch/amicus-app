@@ -1,8 +1,14 @@
 {
     "name": "mikebirch/showus-app",
-    "description": "Showus app",
+    "description": "Showus app skeleton for simple websites",
     "type": "project",
     "license": "MIT",
+    "authors": [
+		{
+            "name": "Michael Birch", 
+            "email": "mike@windrushdesign.co.nz"
+        }
+	],
     "require": {
         "jasongrimes/paginator": "~1.0",
         "wruczek/php-file-cache": "^0.0.5",
