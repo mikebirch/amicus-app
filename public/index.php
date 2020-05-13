@@ -29,3 +29,23 @@ $router = new App\Router\PageRouter();
 require CONFIG . DS . 'routes.php';
 
 $router->dispatch($url, '/');
+
+
+if ($config['show_debug_bar'] == true) {
+    $db_config = $config['Datasources'][$config['environment']];
+    
+    $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+    $debug =  '<div class="debug-bar">';
+    $debug .= '<div>';
+    $debug .= '<div><p>Execution time: ' . number_format($time, 3) . ' milliseconds</p></div>';
+    $debug .= '<div>';
+    $debug .= '<h2>Clear Caches</h2>';
+    $debug .= '<ul>';
+    $debug .= '<li><a href="/blog/clear-all-cache">Blog</a></li>';
+    $debug .= '<li><a href="/pages/clear-all-cache">Pages</a></li>';
+    $debug .= '</ul>';
+    $debug .= '</div>';
+    $debug .= '</div>';
+    $debug .= '</div>';
+    echo $debug;
+}

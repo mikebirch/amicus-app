@@ -14,7 +14,7 @@ class BlogPostsController extends AppController
     /**
      * An instance of App\Cache\Cache
      *
-     * @var Cache object
+     * @var Cache
      */
     private $cache;
 
