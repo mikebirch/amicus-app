@@ -25,8 +25,6 @@ if ( !function_exists('debug') ) {
             echo '<pre>';
             var_dump($var);
             echo '</pre>';
-        } else {
-            return true;
-        }
+        } 
     }
 }
