@@ -90,7 +90,11 @@ class BlogPosts extends \Showus\Model\Model
             WHERE published = 1 AND slug = ?'
         );
         $stmt->execute([$slug]); 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $blog_post = $stmt->fetch(PDO::FETCH_ASSOC);
+        $blog_post['words'] = str_word_count(strip_tags($blog_post['body']));
+        // reading time: https://www.healthguidance.org/entry/13263/1/What-Is-the-Average-Reading-Speed-and-the-Best-Rate-of-Reading.html
+        $blog_post['minutes'] = round($blog_post['words'] / 250);
+        return $blog_post;
     }
 
     /**
