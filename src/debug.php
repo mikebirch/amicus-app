@@ -1,5 +1,5 @@
 <?php
-use Showus\Configure\Configure;
+use Anticus\Configure\Configure;
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }

@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use Showus\Controller\Controller;
-use Showus\Configure\Configure;
+use Anticus\Controller\Controller;
+use Anticus\Configure\Configure;
 use App\Cache\Cache;
 
 /**

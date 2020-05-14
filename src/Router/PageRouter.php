@@ -2,8 +2,8 @@
 
 namespace App\Router;
 
-use Showus\Router\Router;
-use Showus\Configure\Configure;
+use Anticus\Router\Router;
+use Anticus\Configure\Configure;
 use App\Cache\Cache;
 
 /**

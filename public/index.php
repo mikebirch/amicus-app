@@ -11,7 +11,7 @@ define("APP", ROOT . DS . 'src');
 
 require ROOT. DS . 'vendor' . DS . 'autoload.php';
 
-use Showus\Configure\Configure;
+use Anticus\Configure\Configure;
 $config = Configure::read();
 
 if ($config['environment'] == 'dev') {
@@ -19,8 +19,8 @@ if ($config['environment'] == 'dev') {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL); 
 }
-set_error_handler('Showus\Error\Error::errorHandler');
-set_exception_handler('Showus\Error\Error::exceptionHandler');
+set_error_handler('Anticus\Error\Error::errorHandler');
+set_exception_handler('Anticus\Error\Error::exceptionHandler');
 
 require CONFIG . DS . 'requirements.php';
 

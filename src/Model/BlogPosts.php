@@ -3,13 +3,13 @@
 namespace App\Model;
 
 use PDO;
-use Showus\Configure\Configure;
+use Anticus\Configure\Configure;
 use JasonGrimes\Paginator;
 
 /**
  * BlogPosts model
  */
-class BlogPosts extends \Showus\Model\Model
+class BlogPosts extends \Anticus\Model\Model
 {  
     /**
      * Get a page of published blog posts from the database

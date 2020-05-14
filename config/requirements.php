@@ -1,7 +1,7 @@
 <?php
 // remove these checks if your website meets the requirements
 if (version_compare(PHP_VERSION, '7.0') < 0) {
-    throw new \Exception('Current PHP version: ' . phpversion() . '.  It needs to be equal to or higher than 7.0 for Showus.', 404);
+    throw new \Exception('Current PHP version: ' . phpversion() . '.  It needs to be equal to or higher than 7.0 for Anticus.', 404);
 }
 
 if (!is_writable(CACHE)) {

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Cache\Cache;
-use Showus\View\View;
+use Anticus\View\View;
 
 /**
  * Pages controller
