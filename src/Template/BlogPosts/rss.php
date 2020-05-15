@@ -22,8 +22,8 @@ $replace = [
     'href="' . $protocol . $_SERVER['HTTP_HOST'] . '/'
 ];
 
-if ( isset($blog_posts) ) {
-    foreach ($blog_posts as $post) {
+if ( isset($data['blog_posts']) ) {
+    foreach ($data['blog_posts'] as $post) {
         $body = str_replace($search, $replace, $post['body']);
         $channel
             ->item(
