@@ -14,6 +14,13 @@
                 {{ blog_post.created|date(config.blog.date_format_on_view) }}
             </time>
             <p class="author">by {{ blog_post.author }}, reading time {{ blog_post.minutes|minutes }} ({{ blog_post.words }} words)</p>
+            {% if config.blog.display_tags_on_view %}
+            <p class="tags">
+                {% for tag in blog_post.tags %}
+                    <a href="/blog/tag/{{tag}}">{{tag}}</a>
+                {% endfor %}
+            </p>
+            {% endif %}
         </div>
     </header>
     <section class="post-content">
