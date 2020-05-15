@@ -36,7 +36,7 @@ class AppController extends Controller
 
         $cache = new Cache();
         $this->data['main_menu_items'] = $cache->cacheData(
-            $this->data['config']['paths']['Cache'] . DS . 'pages' . DS, 
+            $this->data['config']['paths']['Cache'] . DS . 'main_menu' . DS, 
             'all', 
             'App\Model\MainMenu', 
             'getAll'
