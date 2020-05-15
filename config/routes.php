@@ -4,6 +4,10 @@ $router->add('blog', [
     'controller' => 'BlogPostsController',
     'action' => 'index'
 ]);
+$router->add('blog/tag/{tag}', [
+    'controller' => 'BlogPostsController',
+    'action' => 'index'
+]);
 $router->add('blog/clear-index-cache', [
     'controller' => 'BlogPostsController',
     'action' => 'clearIndexCache'

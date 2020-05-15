@@ -14,35 +14,59 @@ class BlogPosts extends \Anticus\Model\Model
     /**
      * Get a page of published blog posts from the database
      *
-     * @param int $current_page page number
+     * @param array<mixed> $params
      * @return array<mixed>
      */
-    public static function getPage($current_page)
+    public static function getPage($params)
     {
-        $pdo = static::getPDO();
+        $current_page = $params['current_page'];
+        $tag = $params['tag'];
         
-        $items_per_page = 10;
-        $offset = ($current_page-1) * $items_per_page; 
-        $total_items = $pdo->query(
-            'SELECT count(*)
-            FROM blog_posts
-            WHERE published = 1'
-        )->fetchColumn();
+        $pdo = static::getPDO();
+        $config = Configure::read();
 
+        $where = ' WHERE published = 1 ';
+        if ( !empty($tag) ) {
+            $where .= 'AND FIND_IN_SET(:tag,tags) != 0 ';
+        } 
+
+        $query =  'SELECT count(*) 
+        FROM blog_posts' . $where;
+        
+        if ( !empty($tag) ) { 
+            $stmt = $pdo->prepare($query);
+            $stmt->execute(['tag' => $tag]);
+            $total_items = $stmt->fetchColumn();
+        } else {
+            $total_items = $pdo->query($query)->fetchColumn();
+        }
+
+        $items_per_page = $config['blog']['posts_per_page'];
+        $offset = ($current_page-1) * $items_per_page; 
+        
         $totalPages = ceil($total_items / $items_per_page);
         
         $stmt = $pdo->prepare(
             'SELECT title, slug, summary, sticky, created 
-            FROM blog_posts 
-            WHERE published = 1
-            ORDER BY sticky DESC, created DESC
+            FROM blog_posts' . 
+            $where .
+            'ORDER BY sticky DESC, created DESC
             LIMIT :offset, :items_per_page'
         );
-        $stmt->execute(['offset' => $offset, 'items_per_page' => $items_per_page]);
+
+        $execute_array = ['offset' => $offset, 'items_per_page' => $items_per_page];
+        if ( !empty($tag) ) { 
+            $execute_array = $execute_array + ['tag' => $tag];
+        }
+        $stmt->execute($execute_array);
         $blog_posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-        //paginate        
-        $url_pattern = '/blog?page=(:num)';
+        //paginate  
+        if ( !empty($tag) ) {
+            $url_pattern = '/blog/tag/' . $tag . '?page=(:num)';
+        } else {
+            $url_pattern = '/blog?page=(:num)';
+        }
         $paginator = new Paginator($total_items, $items_per_page, $current_page, $url_pattern);
         return ['blog_posts' => $blog_posts, 'paginator' => $paginator];
     }

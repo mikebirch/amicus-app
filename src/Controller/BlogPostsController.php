@@ -51,13 +51,20 @@ class BlogPostsController extends AppController
         } else {
             $current_page = 1;
         }
-       
+
+        $tag = null;
+        if ( isset($this->route_params['tag']) ) {
+            $tag = $this->route_params['tag'];
+            $file = $tag;
+        } else {
+            $file = 'index';
+        }
         $blog_posts = $this->cache->cacheData(
-            $this->cachePath . DS . 'blog-index' . DS, 
-            'index-' . $current_page,
+            $this->cachePath . DS . 'blog_index' . DS, 
+            $file . '-' . $current_page,
             'App\Model\BlogPosts', 
             'getPage', 
-            $current_page
+            ['current_page' => $current_page, 'tag' => $tag]
         );
         $this->data = $this->data + $blog_posts;
         View::renderTemplate('BlogPosts' . DS . 'index.html', $this->data);

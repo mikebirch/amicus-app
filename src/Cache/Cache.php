@@ -16,7 +16,7 @@ class Cache
      * @param string $file file name for cache
      * @param string $model namespace of the model class
      * @param string $action the method in the model
-     * @param int|string $params the parameters for the method 
+     * @param mixed $params the parameters for the method 
      * @return array<mixed> model data
      */
     public function cacheData($path, $file, $model, $action, $params = null)
@@ -24,7 +24,9 @@ class Cache
         $cache = new PhpFileCache($path, $file );
         if ($cache->isExpired("result")) {
             $result = $model::$action($params);
-            $cache->store("result", $result, null, true); 
+            if ( !empty($result) ) {
+                $cache->store("result", $result, 365*24*60*60, true); 
+            }
         }
         return $cache->retrieve("result");
     }
