@@ -78,8 +78,8 @@ class BlogPostsController extends AppController
     public function viewAction()
     {
         $blog_post = $this->cache->cacheData(
-            $this->cachePath . DS . 'blog-view' . DS, 
-            'view-' . $this->route_params['slug'],
+            $this->cachePath . DS . 'blog_view' . DS, 
+            $this->route_params['slug'],
             'App\Model\BlogPosts', 
             'getBySlug', 
             $this->route_params['slug']
@@ -100,7 +100,7 @@ class BlogPostsController extends AppController
     public function feedAction()
     {
         $blog_posts = $this->cache->cacheData(
-            $this->cachePath . DS . 'blog-feed' . DS, 
+            $this->cachePath . DS . 'blog_feed' . DS, 
             'feed',
             'App\Model\BlogPosts', 
             'getAll'
@@ -117,9 +117,9 @@ class BlogPostsController extends AppController
     public function clearIndexCacheAction()
     {
         $paths = [
-            $this->cachePath . DS . 'blog-index' . DS,
-            $this->cachePath . DS . 'blog-latest' . DS,
-            $this->cachePath . DS . 'blog-feed' . DS
+            $this->cachePath . DS . 'blog_index' . DS,
+            $this->cachePath . DS . 'blog_latest' . DS,
+            $this->cachePath . DS . 'blog_feed' . DS
         ];
         $this->cache->clearCache($paths);
     }
@@ -132,7 +132,7 @@ class BlogPostsController extends AppController
     public function clearViewCacheAction()
     {
         $paths = [
-            $this->cachePath . DS . 'blog-view' . DS,
+            $this->cachePath . DS . 'blog_view' . DS,
         ];
         $this->cache->clearCache($paths);
     }
@@ -145,10 +145,10 @@ class BlogPostsController extends AppController
     public function clearAllCacheAction()
     {
         $paths = [
-            $this->cachePath . DS . 'blog-index' . DS,
-            $this->cachePath . DS . 'blog-latest' . DS,
-            $this->cachePath . DS . 'blog-feed' . DS,
-            $this->cachePath . DS . 'blog-view' . DS
+            $this->cachePath . DS . 'blog_index' . DS,
+            $this->cachePath . DS . 'blog_latest' . DS,
+            $this->cachePath . DS . 'blog_feed' . DS,
+            $this->cachePath . DS . 'blog_view' . DS
         ];
         $this->cache->clearCache($paths);
         header('Location: ' . $_SERVER['HTTP_REFERER']);

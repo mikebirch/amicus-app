@@ -54,9 +54,8 @@ class PagesController extends AppController
         }
         $cache_name = str_replace('/', '-', $cache_name);
 
-        $cache_path = 'page-view' . DS  .  'view' . $cache_name . DS;
         $this->data['page'] = $cache->cacheData(
-            $this->cachePath . DS . 'page-view' . DS, 
+            $this->cachePath . DS . 'page_view' . DS, 
             'view' . $cache_name,
             'App\Model\Pages', 
             'getByUrl', 
@@ -65,7 +64,7 @@ class PagesController extends AppController
 
         if ($this->data['here'] == '/') {
             $blog_posts = $cache->cacheData(
-                $this->cachePath . DS . 'blog-latest' . DS, 
+                $this->cachePath . DS . 'blog_latest' . DS, 
                 'latest',
                 'App\Model\BlogPosts', 
                 'getLatest');
@@ -95,7 +94,7 @@ class PagesController extends AppController
      */
     public function clearViewCacheAction()
     {
-        $this->cache->clearCache([$this->cachePath . DS . 'page-view' . DS]);
+        $this->cache->clearCache([$this->cachePath . DS . 'page_view' . DS]);
     }
 
     /**
@@ -107,7 +106,7 @@ class PagesController extends AppController
     {
         $paths = [
             $this->cachePath . DS . 'pages' . DS,
-            $this->cachePath . DS . 'page-view' . DS
+            $this->cachePath . DS . 'page_view' . DS
         ];
         $this->cache->clearCache($paths);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
