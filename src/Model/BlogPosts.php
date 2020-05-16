@@ -142,4 +142,32 @@ class BlogPosts extends \Anticus\Model\Model
         );
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } 
+
+    /**
+     * Get all tags from published posts
+     *
+     * @return array<mixed>
+     */
+    public static function getAllTags()
+    {
+        $pdo = static::getPDO();
+        $stmt = $pdo->query(
+            'SELECT tags
+            FROM blog_posts 
+            WHERE published = 1'
+        );
+        $post_tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $tags = [];
+        foreach ($post_tags as $tag_csv) {
+            $tag_list = explode(',', $tag_csv['tags']);
+            foreach ($tag_list as $single_tag) {
+                // save tag as key in order to overwrite duplicates
+                // saves having to use array_unique() or in_array()
+                // https://stackoverflow.com/a/6083605
+                $tags[$single_tag] = 1;
+            }
+        }
+        ksort($tags);
+        return $tags;
+    }
 }

@@ -5,6 +5,11 @@
 
 {% block body %}
 
+{% if tag %}
+<p>Tagged in</p>
+<h1>{{ tag }}</h1>
+{% endif %}
+
 {% for post in blog_posts %}
 
   <article class="{{ html_classes({
@@ -31,11 +36,13 @@
 {% endblock %}
 
 {% block aside %}
-
 <aside role="complementary" class="sidebar">
 
   {% include "Element/rss.html" %}
 
+  {% for tag,value in tags %}
+  <a href="/blog/tag/{{tag}}">{{ tag }}</a>
+  {% endfor %}
+
 </aside>
-  
 {% endblock %}

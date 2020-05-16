@@ -59,6 +59,7 @@ class BlogPostsController extends AppController
         } else {
             $file = 'index';
         }
+
         $blog_posts = $this->cache->cacheData(
             $this->cachePath . DS . 'blog_index' . DS, 
             $file . '-' . $current_page,
@@ -66,6 +67,16 @@ class BlogPostsController extends AppController
             'getPage', 
             ['current_page' => $current_page, 'tag' => $tag]
         );
+
+        $tags = $this->cache->cacheData(
+            $this->cachePath . DS . 'tags' . DS, 
+            'all',
+            'App\Model\BlogPosts', 
+            'getAllTags'
+        );
+
+        $this->data['tags'] = $tags;
+        $this->data['tag'] = $tag;
         $this->data = $this->data + $blog_posts;
         View::renderTemplate('BlogPosts' . DS . 'index.html', $this->data);
     }
