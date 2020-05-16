@@ -55,6 +55,10 @@ body > footer {
     text-align: center;
 }
 
+.logo img {
+  max-width: 120px;
+}
+
 small {
     font-size: 80%;
 }
