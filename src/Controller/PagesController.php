@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Cache\Cache;
 use Anticus\View\View;
+use Wruczek\PhpFileCache\PhpFileCache;
 
 /**
  * Pages controller
@@ -72,6 +73,36 @@ class PagesController extends AppController
             $view = 'home.html';
         } else {
             $view = 'view.html';
+        }
+
+        // find sibling and child pages
+        // anticus is for small sites so this only goes down one level
+        $cache = new PhpFileCache(
+            $this->cachePath . DS . 'pages' . DS,
+            'all'
+        );
+
+        $all_pages = $cache->retrieve("result");
+        $children = [];
+        $siblings = [];
+        $key = 0;
+        foreach ($all_pages as $page) {
+            $page_parts = explode('/', $page['url']);
+            
+            if ( isset($page_parts[2]) && $this->data['here'] == DS . $page_parts[1] ) {
+                $this->data['children'][$key]['url'] = $page['url'];
+                $this->data['children'][$key]['menu_title'] = $page['menu_title'];
+                $key++;
+            }
+
+            $here_parts = explode('/', $this->data['here']);
+
+            if ( isset($here_parts[2]) && $here_parts[1] == $page_parts[1] ) {
+                $this->data['siblings'][$key]['url'] = $page['url'];
+                $this->data['siblings'][$key]['menu_title'] = $page['menu_title'];
+                $key++;
+            }
+
         }
 
         View::renderTemplate('Pages' . DS . $view, $this->data);

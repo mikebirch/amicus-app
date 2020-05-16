@@ -1,0 +1,9 @@
+{% for item in siblings %}
+<li{{ here == item.url ? ' class="active"' : '' }}>
+    {% if here == item.url %}
+    {{ item.menu_title }}
+    {% else %}
+    <a href="{{ item.url }}">{{ item.menu_title }}</a>
+    {% endif %}
+</li>
+{% endfor %}

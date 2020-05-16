@@ -19,7 +19,7 @@ class Pages extends \Anticus\Model\Model
     {    
         $pdo = static::getPDO();
         $stmt = $pdo->query(
-            'SELECT url 
+            'SELECT url, menu_title 
             FROM pages 
             WHERE published = 1'
         );
