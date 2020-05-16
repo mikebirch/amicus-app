@@ -27,3 +27,7 @@ mysql
 
 # config
 config/config.php
+
+# images
+/public/img
+!/public/img/logo.svg
