@@ -30,7 +30,7 @@ return [
     ],
     'paths' => [
         'Cache' => ROOT . DS . 'cache',
-        'Log' => ROOT . DS . 'logs',
+        'Logs' => ROOT . DS . 'logs',
         'Template' => APP . DS . 'Template'
     ],    
     'blog' => [
