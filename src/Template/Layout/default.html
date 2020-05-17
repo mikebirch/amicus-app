@@ -40,8 +40,22 @@
     </header>
     <main>
         <div class="content">
-        {% block body %}
-        {% endblock %}
+            {% if breadcrumbs is defined %}
+            <nav role="navigation" aria-label="breadcrumbs">
+                <a href="/">Home</a>
+                <span aria-hidden="true"></span>
+                {% for item in breadcrumbs %}
+                    {% if loop.last %}
+                        {{ item.menu_title }}
+                    {% else %}
+                        <a href="{{ item.url }}">{{ item.menu_title }}</a>
+                        <span aria-hidden="true"></span>
+                    {% endif %}
+                {% endfor %}
+            </nav>
+            {% endif %}
+            {% block body %}
+            {% endblock %}
         </div>
         {% block aside %}
         {% endblock %}

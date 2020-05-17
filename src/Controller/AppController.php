@@ -50,9 +50,25 @@ class AppController extends Controller
         }
         
         // if the query string includes page=1, remove it from $this->data['here']
-        // so that the main menu can show the active page
+        // so that the main menu can show the active page and to allow it to be used for breadcrumbs
         if (isset($_GET['page']) && $_GET['page'] == 1) {
             $this->data['here'] = strtok($_SERVER['REQUEST_URI'], '?'); // remove the query string
+        }
+        
+        // breadcrumbs - only one level down
+        $parts = explode('/', ltrim($this->data['here'], '/'));
+        
+        if ( isset($parts[1]) ) {
+            foreach ($this->data['all_pages'] as $page) {
+                if ($page['url'] == DS . $parts[0]) {
+                    $this->data['breadcrumbs'][0]['url'] = $page['url'];
+                    $this->data['breadcrumbs'][0]['menu_title'] = $page['menu_title'];
+                }
+                if ($page['url'] == $this->data['here']) {
+                    $this->data['breadcrumbs'][1]['url'] = null;
+                    $this->data['breadcrumbs'][1]['menu_title'] = $page['menu_title'];
+                }
+            }
         }
     }
 }
