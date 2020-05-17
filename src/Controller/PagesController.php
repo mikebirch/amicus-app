@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Cache\Cache;
 use Anticus\View\View;
-use Wruczek\PhpFileCache\PhpFileCache;
 
 /**
  * Pages controller
@@ -25,6 +24,13 @@ class PagesController extends AppController
      * @var string
      */
     private $cachePath;
+
+    /**
+     * Path to logs folder
+     *
+     * @var string
+     */
+    private $logsPath;
     
     /**
      * Class constructor
@@ -38,6 +44,7 @@ class PagesController extends AppController
         parent::__construct($route_params);
         $this->cache = new Cache();
         $this->cachePath = $this->data['config']['paths']['Cache'];
+        $this->logsPath = $this->data['config']['paths']['Logs'];
     }
     
     /**
@@ -97,6 +104,50 @@ class PagesController extends AppController
         }
 
         View::renderTemplate('Pages' . DS . $view, $this->data);
+    }
+
+    /**
+     * Show the install page
+     *
+     * @return void
+     */
+    public function installAction()
+    {
+        if (version_compare(PHP_VERSION, '7.0') < 0) {
+            $this->data['requirements']['php_message'] = 'Current PHP version: ' . phpversion() . '.  It needs to be equal to or higher than 7.0 for Anticus.';
+            $this->data['requirements']['php_fail'] = true;
+        } else {
+            $this->data['requirements']['php_message'] = 'Current PHP version: ' . phpversion();
+            $this->data['requirements']['php_pass'] = true;
+        }
+        
+        if (is_writable($this->cachePath)) {
+            $this->data['requirements']['cache_message'] = 'Your cache directory is writable.' . PHP_EOL;
+            $this->data['requirements']['cache_pass'] = true;
+        } else {
+            $this->data['requirements']['cache_message'] = 'Your cache directory, <code>'. $this->cachePath . '</code>, is not writable.' . PHP_EOL;
+            $this->data['requirements']['cache_message']  .= 'The current permissions are: <code>' . substr(sprintf('%o', fileperms($this->cachePath)), -4) . '</code>';
+            $this->data['requirements']['cache_fail'] = true;
+        }
+        
+        if (is_writable($this->logsPath)) {
+            $this->data['requirements']['logs_message'] = 'Your logs directory is writable.' . PHP_EOL;
+            $this->data['requirements']['logs_pass'] = true;
+        } else {
+            $this->data['requirements']['logs_message'] = 'Your logs directory, <code>'. $this->logsPath . '</code>, is not writable.' . PHP_EOL;
+            $this->data['requirements']['logs_message'] .= 'The current permissions are: <code>' . substr(sprintf('%o', fileperms($this->logsPath)), -4) . '</code>';
+            $this->data['requirements']['logs_fail'] = true;
+        }
+
+        $pdo = \App\Model\Pages::testDatabaseConnection();
+        if ( !empty($pdo) ){
+            $this->data['requirements']['db_message'] = 'Anticus is able to connect to the database.' . PHP_EOL;
+            $this->data['requirements']['db_pass'] = true;
+        } else {
+            $this->data['requirements']['db_message'] = 'Anticus is NOT able to connect to the database.' . PHP_EOL;
+            $this->data['requirements']['db_fail'] = true;
+        }
+        View::renderTemplate('Pages' . DS . 'install.html', $this->data);
     }
 
     /**

@@ -24,16 +24,24 @@ class PageRouter extends Router
     {
         $cache = new Cache();
         $config = Configure::read();
-        $published_pages = $cache->cacheData(
-            $config['paths']['Cache'] . DS . 'pages' . DS, 
-            'all', 
-            'App\Model\Pages', 
-            'getAll'
-        );
-        foreach ($published_pages as $published_page) {
-            $this->add(trim($published_page['url'], '/'), [
+
+        if ( !file_exists($config['paths']['Template'] . DS . 'Pages' . DS . 'install.html') ) {
+            $published_pages = $cache->cacheData(
+                $config['paths']['Cache'] . DS . 'pages' . DS, 
+                'all', 
+                'App\Model\Pages', 
+                'getAll'
+            );
+            foreach ($published_pages as $published_page) {
+                $this->add(trim($published_page['url'], '/'), [
+                    'controller' => 'PagesController',
+                    'action' => 'view'
+                ]);
+            }
+        } else {
+            $this->add('', [
                 'controller' => 'PagesController',
-                'action' => 'view'
+                'action' => 'install'
             ]);
         }
     }

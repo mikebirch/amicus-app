@@ -11,6 +11,16 @@ use PDO;
 class Pages extends \Anticus\Model\Model
 {   
     /**
+     * Get an instance of pdo to test the db connection
+     *
+     * @return object
+     */
+    public static function testDatabaseConnection()
+    {
+        return static::testPDO();
+    }
+    
+    /**
      * Get all the published pages from the database
      *
      * @return array<mixed>

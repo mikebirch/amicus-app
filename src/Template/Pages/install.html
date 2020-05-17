@@ -1,0 +1,36 @@
+{% extends "layout/default.html" %}
+
+{% block title %}{{ config.site.title }}{% endblock %}
+{% block meta_description %}{{ config.site.meta_description }}{% endblock %}
+
+{% block body %}
+
+<h1>Welcome to Anticus</h1>
+
+<p class="{{ html_classes({
+    'pass': requirements.php_pass,
+    'fail': requirements.php_fail
+}) }}">{{ requirements.php_message|raw }}</p>
+
+<p class="{{ html_classes({
+    'pass': requirements.cache_pass,
+    'fail': requirements.cache_fail
+}) }}">{{ requirements.cache_message|raw }}</p>
+
+<p class="{{ html_classes({
+    'pass': requirements.logs_pass,
+    'fail': requirements.logs_fail
+}) }}">{{ requirements.logs_message|raw }}</p>
+
+<p class="{{ html_classes({
+    'pass': requirements.db_pass,
+    'fail': requirements.db_fail
+}) }}">{{ requirements.db_message|raw }}</p>
+
+{% if requirements.php_pass and requirements.cache_pass and requirements.logs_pass and requirements.db_pass %}
+    <h2>Get started</h2>
+    <p>Start building your site with Directus. </p>
+    <p>Add the home page to the pages collection and then refresh this page.</p>
+{% endif %}
+
+{% endblock %}

@@ -34,13 +34,20 @@ class AppController extends Controller
         // to prevent sensitive data being displayed in a view
         unset($this->data['config']['Datasources']); 
 
-        $cache = new Cache();
-        $this->data['main_menu_items'] = $cache->cacheData(
-            $this->data['config']['paths']['Cache'] . DS . 'main_menu' . DS, 
-            'all', 
-            'App\Model\MainMenu', 
-            'getAll'
-        );
+        if ( !file_exists($this->data['config']['paths']['Template'] . DS . 'Pages' . DS . 'install.html') ) {
+            $cache = new Cache();
+            $this->data['main_menu_items'] = $cache->cacheData(
+                $this->data['config']['paths']['Cache'] . DS . 'main_menu' . DS, 
+                'all', 
+                'App\Model\MainMenu', 
+                'getAll'
+            );
+
+            $this->data['all_pages'] = $cache->retrieve(
+                $this->data['config']['paths']['Cache'] . DS . 'pages' . DS,
+                'all'
+            );
+        }
 
         if ($_SERVER['REQUEST_URI'] != '/') {
             // remove trailing forward slash 
