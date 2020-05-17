@@ -49,13 +49,6 @@ $router->add('main-menu/clear-cache', [
     'action' => 'clearCache'
 ]);
 
-/**
- * Add routes for pages
- */
-
-// remove trailing forward slashes and remove query string
-$url = strtok(trim($_SERVER['REQUEST_URI'], '/'), '?');
-
 // to avoid regenerating the cache
 if ($url != 'pages/clear-index-cache') {
     // add routes for all published pages in the db.

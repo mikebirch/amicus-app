@@ -26,6 +26,9 @@ require CONFIG . DS . 'requirements.php';
 
 $router = new App\Router\PageRouter();
 
+// remove trailing and forward slashes and remove query string
+$url = strtok(trim($_SERVER['REQUEST_URI'], '/'), '?');
+
 require CONFIG . DS . 'routes.php';
 
 $router->dispatch($url, '/');
