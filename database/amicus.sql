@@ -35,6 +35,7 @@ CREATE TABLE `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `menu_title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `published` tinyint(4) DEFAULT '1',
   `meta_title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT '',
