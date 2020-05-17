@@ -32,6 +32,19 @@ class Cache
     }
 
     /**
+     * Retrieve data from cache
+     *
+     * @param string $path directory for cache
+     * @param string $file file name for cache
+     * @return array<mixed>
+     */
+    public function retrieve($path, $file)
+    {
+        $cache = new PhpFileCache($path, $file);
+        return $cache->retrieve("result");
+    }
+
+    /**
      * Delete all files in cache directories
      * Directus only has webhooks for create, update and delete which means that
      * you can’t target individual files via the clearCache() method in PhpFileCache
