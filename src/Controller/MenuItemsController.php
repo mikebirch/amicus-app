@@ -6,9 +6,9 @@ use App\Controller\AppController;
 use App\Cache\Cache;
 
 /**
- * MainMenu controller
+ * MenuItems controller
  */
-class MainMenuController extends AppController
+class MenuItemsController extends AppController
 {
     /**
      * Used by webhooks to clear cache
@@ -18,6 +18,6 @@ class MainMenuController extends AppController
     public function clearCacheAction()
     {
         $cache = new Cache();
-        $cache->clearCache([$this->data['config']['paths']['Cache'] . DS . 'main-menu' . DS]);
+        $cache->clearCache([$this->data['config']['paths']['Cache'] . DS . 'menu-items' . DS]);
     }
 }

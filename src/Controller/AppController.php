@@ -36,10 +36,10 @@ class AppController extends Controller
 
         if ( !file_exists($this->data['config']['paths']['Template'] . DS . 'Pages' . DS . 'install.html') ) {
             $cache = new Cache();
-            $this->data['main_menu_items'] = $cache->cacheData(
-                $this->data['config']['paths']['Cache'] . DS . 'main_menu' . DS, 
+            $this->data['menu_items'] = $cache->cacheData(
+                $this->data['config']['paths']['Cache'] . DS . 'menu_items' . DS, 
                 'all', 
-                'App\Model\MainMenu', 
+                'App\Model\MenuItems', 
                 'getAll'
             );
 

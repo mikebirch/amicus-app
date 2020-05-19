@@ -8,7 +8,7 @@ use PDO;
 /**
  * Main menu model
  */
-class MainMenu extends \Anticus\Model\Model
+class MenuItems extends \Anticus\Model\Model
 {
     /**
      * Get the main menu links from the database
@@ -18,8 +18,12 @@ class MainMenu extends \Anticus\Model\Model
     public static function getAll()
     {
         $pdo = static::getPDO();
-        $stmt = $pdo->query('SELECT title, url FROM main_menu WHERE published = 1');
-        $main_menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $main_menu;
+        $stmt = $pdo->query(
+            'SELECT menu, title, url 
+            FROM menu_items 
+            WHERE published = 1'
+        );
+        $menu_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $menu_items;
     }
 }
