@@ -4,7 +4,7 @@
 {% block meta_description %}{{ config.site.meta_description }}{% endblock %}
 
 {% block body %}
-
+    <h1> {{ page.title}}  </h1>
     {{ page.body|raw}}
     <div class="latest-posts">
       {% for blog_post in blog_posts %}
