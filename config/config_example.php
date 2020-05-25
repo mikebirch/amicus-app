@@ -31,7 +31,8 @@ return [
     'paths' => [
         'Cache' => ROOT . DS . 'cache',
         'Logs' => ROOT . DS . 'logs',
-        'Template' => APP . DS . 'Template'
+        'Template' => APP . DS . 'Template',
+        'Webroot' => ROOT . DS . 'public'
     ],    
     'blog' => [
         'number_latest_posts' => 3,
@@ -47,7 +48,8 @@ return [
     ],
     'site' => [
         'title' => 'Site title',
-        'meta_description' => 'Site Description'
+        'meta_description' => 'Site Description',
+        'css_version' => 1
     ],
     'google_analytics' => true
 ];

@@ -77,5 +77,13 @@ class AppController extends Controller
                 }
             }
         }
+
+         // create query string for CSS file for development
+         $css_file = $this->data['config']['paths']['Webroot'] . DS . 'css' . DS . 'screen-v' . $this->data['config']['site']['css_version'] . '.min.css';
+         if (file_exists($css_file)) {
+             $this->data['site']['css_mod_time'] = filemtime($css_file);
+         } else {
+             $this->data['site']['css_mod_time'] = '1';
+         }
     }
 }
