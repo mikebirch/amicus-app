@@ -18,9 +18,9 @@ CREATE TABLE `blog_posts` (
   UNIQUE KEY `slug` (`slug`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-DROP TABLE IF EXISTS `main_menu`;
-CREATE TABLE `main_menu` (
+CREATE TABLE `menu_items` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `menu` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'main',
   `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sort` int(10) unsigned DEFAULT NULL COMMENT 'Choose the order that items show in the menu',
