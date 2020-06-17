@@ -21,7 +21,7 @@ class MenuItems extends \Anticus\Model\Model
         $stmt = $pdo->query(
             'SELECT menu, title, url, sort 
             FROM menu_items 
-            WHERE published = 1,
+            WHERE published = 1 
             ORDER by sort ASC'
         );
         $menu_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
