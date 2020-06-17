@@ -162,6 +162,8 @@ class BlogPostsController extends AppController
             $this->cachePath . DS . 'blog_view' . DS
         ];
         $this->cache->clearCache($paths);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        if ( isset($_GET['bar']) ) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
     }
 }

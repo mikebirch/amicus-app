@@ -182,6 +182,8 @@ class PagesController extends AppController
             $this->cachePath . DS . 'page_view' . DS
         ];
         $this->cache->clearCache($paths);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        if ( isset($_GET['bar']) ) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
     }
 }
