@@ -17,7 +17,7 @@
     'has-summary': config.blog.show_summary_on_index
 }) }}" itemscope="" itemtype="http://schema.org/BlogPosting" role="article">
     <header class="clearfix">
-      <h2><a re="bookmark" href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
+      <h2><a rel="bookmark" href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
       {% if config.blog.show_date_on_index %}
       <time pubdate datetime="{{ post.created|date('c') }}">
           {{ post.created|date(config.blog.date_format_on_index) }}
