@@ -51,5 +51,9 @@ return [
         'meta_description' => 'Site Description',
         'css_version' => 1
     ],
+    'rss' => [
+        'title' => 'title',
+        'description' => 'description'
+    ],
     'google_analytics' => true
 ];

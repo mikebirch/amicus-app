@@ -1,18 +1,20 @@
 <?php
 use Lib16\RSS\Channel;
 use Lib16\RSS\RssMarkup;
+use Anticus\Configure\Configure;
 
 header('Content-Type: text/xml');
 
 $protocol = 'https://';
 
+$config = Configure::read();
 if ( isset($config['environment']) && $config['environment'] == 'dev' ) {
     $protocol = 'http://'; 
 }
 
 $channel = Channel::create(
-    'Michael Birch',
-    'Michael Birch writes about technology and design in his work and side projects.',
+    $config['rss']['title'],
+    $config['rss']['description'],
     $protocol . $_SERVER['HTTP_HOST'] . '/blog'
 );
 
