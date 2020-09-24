@@ -17,7 +17,7 @@
             {% if config.blog.display_tags_on_view %}
             <p class="tags">
                 {% for tag in blog_post.tags %}
-                    <a href="/blog/tag/{{tag}}">{{tag}}</a>
+                    <a href="/{{config.blog.url}}/tag/{{tag}}">{{tag}}</a>
                 {% endfor %}
             </p>
             {% endif %}

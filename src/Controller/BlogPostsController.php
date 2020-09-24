@@ -99,7 +99,7 @@ class BlogPostsController extends AppController
         if (!empty($this->data['blog_post'])) {
             View::renderTemplate('BlogPosts' . DS . 'view.html', $this->data);
         } else {
-            throw new \Exception('Page not found: /blog/' . $this->route_params['slug'], 404);
+            throw new \Exception('Page not found: /' . $this->data['config']['blog']['url']. '/' . $this->route_params['slug'], 404);
         }     
     }
     

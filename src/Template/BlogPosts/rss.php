@@ -15,7 +15,7 @@ if ( isset($config['environment']) && $config['environment'] == 'dev' ) {
 $channel = Channel::create(
     $config['rss']['title'],
     $config['rss']['description'],
-    $protocol . $_SERVER['HTTP_HOST'] . '/blog'
+    $protocol . $_SERVER['HTTP_HOST'] . '/' . $config['blog']['url']
 );
 
 $search = ['src="/img/', 'href="/'];
@@ -31,9 +31,9 @@ if ( isset($data['blog_posts']) ) {
             ->item(
                 $post['title'],
                 '<![CDATA[ ' . $body . ' ]]>',
-                $protocol . $_SERVER['HTTP_HOST'] . '/' . 'blog' . '/' . $post['slug']
+                $protocol . $_SERVER['HTTP_HOST'] . '/' . $config['blog']['url'] . '/' . $post['slug']
             )
-            ->guid('regbirch.com-post-' . $post['id'], false)
+            ->guid($_SERVER['HTTP_HOST'] . '-' . $config['blog']['url'] . '-' . $post['id'], false)
             ->pubDate(new DateTime($post['created']));
     }
 }

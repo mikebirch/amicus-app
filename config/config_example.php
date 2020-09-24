@@ -35,6 +35,7 @@ return [
         'Webroot' => ROOT . DS . 'public'
     ],    
     'blog' => [
+        'url' => 'blog',
         'number_latest_posts' => 3,
         'posts_per_page' => 10,
         'show_summary_on_index' => true,

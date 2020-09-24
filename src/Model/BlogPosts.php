@@ -63,9 +63,9 @@ class BlogPosts extends \Anticus\Model\Model
     
         //paginate  
         if ( !empty($tag) ) {
-            $url_pattern = '/blog/tag/' . $tag . '?page=(:num)';
+            $url_pattern = '/' . $config['blog']['url'] . '/tag/' . $tag . '?page=(:num)';
         } else {
-            $url_pattern = '/blog?page=(:num)';
+            $url_pattern = '/' . $config['blog']['url'] . '?page=(:num)';
         }
         $paginator = new Paginator($total_items, $items_per_page, $current_page, $url_pattern);
         return ['blog_posts' => $blog_posts, 'paginator' => $paginator];
