@@ -44,7 +44,7 @@ if ($config['show_debug_bar'] == true) {
     $debug .= '<div>';
     $debug .= '<h2>Clear Caches</h2>';
     $debug .= '<ul>';
-    $debug .= '<li><a href="/news/clear-all-cache?bar=1">Blog</a></li>';
+    $debug .= '<li><a href="/' . $config['blog']['url'] . '/clear-all-cache?bar=1">Blog</a></li>';
     $debug .= '<li><a href="/pages/clear-all-cache?bar=1">Pages</a></li>';
     $debug .= '</ul>';
     $debug .= '</div>';
