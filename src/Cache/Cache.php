@@ -48,6 +48,7 @@ class Cache
      * Delete all files and folders in cache directories
      * Directus only has webhooks for create, update and delete which means that
      * you can’t target individual files via the clearCache() method in PhpFileCache
+     * based on https://gist.github.com/mindplay-dk/a4aad91f5a4f1283a5e2#gistcomment-2036828
      *
      * @param array<int,string> $paths a list of directories
      * @return void
