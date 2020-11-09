@@ -1,6 +1,7 @@
 <?php
 return [
     'environment' => 'dev', // either dev or prod
+    'noindex' => false, // adds tag: <meta name="robots" content="noindex" />
     'debug' => true, // true or false
     'show_debug_bar' => true, // true or false
     'Datasources' => [
@@ -48,6 +49,8 @@ return [
         'disqus_developer_mode' => false
     ],
     'site' => [
+        'url' => 'https://www.your-website.com',
+        'files_url' => 'https://domain-name/directus-site-name/assets', // url for Directus assets
         'title' => 'Site title',
         'meta_description' => 'Site Description',
         'css_version' => 1
@@ -56,5 +59,5 @@ return [
         'title' => 'title',
         'description' => 'description'
     ],
-    'google_analytics' => true
+    'google_analytics' => false
 ];
