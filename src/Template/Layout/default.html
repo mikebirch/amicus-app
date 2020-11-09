@@ -36,11 +36,13 @@
                 </a>
             {% endif %}
         </div>
+        {% if menu_items is defined %}
         <nav>
             <ul class="main-menu">
                 {% include "Element/main_menu.html" %}
             </ul>
         </nav>
+        {% endif %}
     </header>
     <main>
         <div class="content">
