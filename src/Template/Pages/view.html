@@ -1,7 +1,7 @@
 {% extends "Layout/default.html" %}
 
-{% block title %}{{ page.meta_title}} | {{ config.site.title }}{% endblock %}
-{% block meta_description %}{{ page.meta_description }}{% endblock %}
+{% set title = page.meta_title ~ ' | ' ~ config.site.title %}
+{% set meta_description = page.meta_description %}
 
 {% block body %}
     <h1> {{ page.title}}  </h1>

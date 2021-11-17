@@ -1,7 +1,7 @@
 {% extends "Layout/default.html" %}
 
-{% block title %}Blog | {{ config.site.title }}{% endblock %}
-{% block meta_description %}{{ config.blog.meta_description }}{% endblock %}
+{% set title = 'Blog | ' ~ config.site.title %}
+{% set meta_description = config.blog.meta_description %}
 
 {% block body %}
 

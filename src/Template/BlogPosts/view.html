@@ -1,7 +1,7 @@
 {% extends "Layout/default.html" %}
 
-{% block title %}{{ blog_post.title }}{% endblock %}
-{% block meta_description %}{{ blog_post.meta_description }}{% endblock %}
+{% set title = blog_post.meta_title %}
+{% set meta_description = page.meta_description %}
 
 {% block body %}
 
