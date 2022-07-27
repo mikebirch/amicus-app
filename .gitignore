@@ -27,6 +27,7 @@ mysql
 
 # config
 config/config.php
+config/config_local.php
 
 # images
 /public/img
