@@ -4,24 +4,13 @@ return [
     'noindex' => false, // adds tag: <meta name="robots" content="noindex" />
     'debug' => true, // true or false
     'show_debug_bar' => true, // true or false
-    'Datasources' => [
-        // indices match environment
-        'dev' => [
-            'type' => 'mysql',
-            'name' => 'name',
-            'host' => 'localhost',
-            'username' => 'user',
-            'password' => '123456',
-            'charset' => 'utf8mb4'
-        ],
-        'prod' => [
-            'type' => 'mysql',
-            'name' => 'name',
-            'host' => 'localhost',
-            'username' => 'user',
-            'password' => '123456',
-            'charset' => 'utf8mb4'
-        ]
+    'database' => [
+        'type' => 'mysql',
+        'name' => '',
+        'host' => 'mysql57',
+        'username' => '',
+        'password' => '',
+        'charset' => 'utf8mb4'
     ],
     'Cache' => [
         'expiration' => [
@@ -49,15 +38,19 @@ return [
         'disqus_developer_mode' => false
     ],
     'site' => [
-        'url' => 'https://www.your-website.com',
-        'files_url' => 'https://domain-name/directus-site-name/assets', // url for Directus assets
-        'title' => 'Site title',
-        'meta_description' => 'Site Description',
-        'css_version' => 1
+        'url' => '',
+        'email' => '',
+        'noreply_email' => '',
+        'files_url' => '', // url for Directus assets https://domain-name/directus-site-name/assets
+        'title' => '',
+        'meta_description' => '',
+        'honeypot' => 'cell',
+        'css_version' => 1,
+        'js_version' => 1
     ],
     'rss' => [
-        'title' => 'title',
-        'description' => 'description'
+        'title' => '',
+        'description' => ''
     ],
     'google_analytics' => false
 ];
