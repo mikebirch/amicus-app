@@ -32,7 +32,7 @@ class AppController extends Controller
       
         $this->data['config'] = Configure::read();
         // to prevent sensitive data being displayed in a view
-        unset($this->data['config']['Datasources']); 
+        unset($this->data['config']['database']); 
 
         if ( !file_exists($this->data['config']['paths']['Template'] . DS . 'Pages' . DS . 'install.html') ) {
             $cache = new Cache();

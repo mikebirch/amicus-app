@@ -33,10 +33,7 @@ require CONFIG . DS . 'routes.php';
 
 $router->dispatch($url, '/');
 
-
-if ($config['show_debug_bar'] == true) {
-    $db_config = $config['Datasources'][$config['environment']];
-    
+if ($config['show_debug_bar'] == true) {   
     $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
     $debug =  '<div class="debug-bar">';
     $debug .= '<div>';
