@@ -11,16 +11,19 @@ define("APP", ROOT . DS . 'src');
 
 require ROOT. DS . 'vendor' . DS . 'autoload.php';
 
-use Anticus\Configure\Configure;
-$config = Configure::read();
+$config = \Anticus\Configure\Configure::read();
 
+error_reporting(E_ALL);
+
+$whoops = new \Whoops\Run;
 if ($config['environment'] == 'dev') {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL); 
+    $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+} else {
+    $whoops->pushHandler(function($exception, $inspector, $whoops) {
+        \Anticus\Log\Log::logException($exception, $whoops);        
+    });
 }
-set_error_handler('Anticus\Error\Error::errorHandler');
-set_exception_handler('Anticus\Error\Error::exceptionHandler');
+$whoops->register();
 
 require CONFIG . DS . 'requirements.php';
 
