@@ -20,7 +20,8 @@ if ($config['environment'] == 'dev') {
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 } else {
     $whoops->pushHandler(function($exception, $inspector, $whoops) {
-        \Anticus\Log\Log::logException($exception, $whoops);        
+        \Anticus\Log\Log::logException($exception, $whoops);
+        return \Whoops\Handler\Handler::LAST_HANDLER;
     });
 }
 $whoops->register();
