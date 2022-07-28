@@ -118,8 +118,9 @@ class BlogPosts extends \Anticus\Model\Model
         );
         $stmt->execute([$slug]); 
         $blog_post = $stmt->fetch(PDO::FETCH_ASSOC);
-        $blog_post['tags'] = explode(',', $blog_post['tags']);
+        
         if ( !empty($blog_post) ) {
+            $blog_post['tags'] = explode(',', $blog_post['tags']);
             $blog_post['words'] = str_word_count(strip_tags($blog_post['body']));
             $blog_post['minutes'] = round($blog_post['words'] / 250);
         }
