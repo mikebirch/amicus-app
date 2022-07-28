@@ -58,9 +58,10 @@ class Cache
         foreach ($paths as $path) {
             // Handle bad arguments.
             if (empty($path) || !file_exists($path)) {
-                return true; // No such file/path exists.
+                return; // No such file/path exists.
             } elseif (is_file($path) || is_link($path)) {
-                return @unlink($path); // Delete file/link.
+                @unlink($path); // Delete file/link.
+                return;
             }
 
             // Delete all children.
@@ -72,7 +73,7 @@ class Cache
             foreach ($files as $fileinfo) {
                 $action = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
                 if (!@$action($fileinfo->getRealPath())) {
-                    return false; // Abort due to the failure.
+                    return; // Abort due to the failure.
                 }
             }
         }
